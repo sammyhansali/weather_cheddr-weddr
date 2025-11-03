@@ -17,4 +17,10 @@ conn = snowflake.connector.connect(
     },
 )
 
-conn.cursor().execute("create database test;")
+cs = conn.cursor()
+cs.execute("""
+
+""")
+
+cs.close()
+conn.close()
