@@ -11,3 +11,6 @@ wheels/
 
 # Credentials
 .env
+
+# Other
+test_data/
