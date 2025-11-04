@@ -7,3 +7,6 @@
 - MARTS
     - FCT - fact table
     - DIM - dimension table
+
+# Other resources
+- How to setup snowflake for dbt best practices: https://www.getdbt.com/blog/how-we-configure-snowflake

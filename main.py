@@ -1,7 +1,7 @@
 import os
 import pathlib
 from api_request.weather_forecast import make_request
-from warehouse.ingest import ingest_payload
+from warehouse.ingest import ingest_setup, ingest_payload
 
 def main():
     
@@ -10,8 +10,11 @@ def main():
     if not os.path.exists(fp):
         make_request()
 
-    # Step 2: Ingest the payload into snowflake
+    # Step 2: Data ingestion into snowflake
+    ingest_setup()
     ingest_payload()
+
+    # Step 3: DBT
     
     
 
