@@ -11,6 +11,7 @@ def main():
         make_request()
 
     # Step 2: Data ingestion into snowflake
+    ## Run the full_snowflake_setup.sql file first
     ingest_setup()
     ingest_payload()
 
