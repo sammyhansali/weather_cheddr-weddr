@@ -1,15 +1,8 @@
 with 
 
-src as (
-    select * from {{ source('cheddr_weddr', 'weather_forecast') }}
-
-),
-
-unload_json as (
-    select 
-        payload:daily::variant as daily
-
-    from src
+stg as (
+    select daily 
+    from {{ ref('stg_cheddr_weddr__weather_forecast') }}
 
 ),
 
@@ -18,7 +11,7 @@ ts_times as (
         (row_number() over (order by j.value::datetime asc) - 1) as ts_index,
         j.value::datetime as ts_time
     
-    from unload_json as w,
+    from stg as w,
         lateral flatten(input => w.daily:time) j
 
 ),
@@ -29,7 +22,7 @@ ts_vals as (
         j.key as field,
         f.value::varchar as value
         
-    from unload_json as w,
+    from stg as w,
         lateral flatten (input => daily) j,
         lateral flatten (input => j.value) f
     where field <> 'time'
