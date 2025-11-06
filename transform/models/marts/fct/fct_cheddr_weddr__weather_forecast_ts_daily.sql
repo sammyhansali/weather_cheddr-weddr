@@ -32,7 +32,7 @@ ts_vals as (
 final as (
     select
         tv.ts_index,
-        tt.ts_time,
+        tt.ts_time as ts,
         tv.field,
         tv.value
     from ts_vals as tv

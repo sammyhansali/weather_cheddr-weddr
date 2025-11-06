@@ -4,32 +4,13 @@ import requests
 import pathlib
 from pprint import pp
 
-url = "https://api.open-meteo.com/v1/forecast"
+url = "https://flood-api.open-meteo.com/v1/flood"
 params = {
-    "forecast_days": 1,
-    "temperature_unit": "fahrenheit",
-    "latitude": 42.3751,
-    "longitude": -71.1056,
-    "timezone": "America/New_York",
-    "hourly": [
-        "temperature_2m",
-        "relative_humidity_2m",
-        "dew_point_2m",
-        "apparent_temperature",
-        "precipitation_probability",
-        "precipitation",
-        "rain",
-        "showers",
-        "snowfall",
-        "snow_depth",
-        "wind_speed_10m",
-        "weather_code",
-        "visibility",
-        "wind_direction_10m",
-        "wind_gusts_10m",
-        "cloud_cover",
-        "et0_fao_evapotranspiration",
-    ],
+	"forecast_days": 1,
+	"latitude": 42.3751,
+	"longitude": -71.1056,
+	"timezone": "America/New_York",
+	"daily": "river_discharge",
 }
 
 

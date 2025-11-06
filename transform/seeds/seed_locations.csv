@@ -1,5 +1,11 @@
-location_id,city,state,country,longitude,latitude
-0,Cambridge,MA,USA,-71.1290,42.3550
-1,Boston,MA,USA,-71.0589,42.3601
-2,New York City,NY,USA,-74.0060,40.7128
-3,San Francisco,CA,USA,-122.4194,37.7749
+location_id,city,country,longitude,latitude
+0,Cambridge,US,-71.1056,42.3751
+1,New York City,US,-74.006,40.7128
+2,San Francisco,US,-122.4194,37.7749
+3,London,GB,-0.12574,51.50853
+4,Hanoi,VN,105.84117,21.0245
+5,Tokyo,JP,139.69171,35.6895
+6,Rabat,MA,-6.83255,34.01325
+7,Reykjavik,IS,-21.89541,64.13548
+8,Amsterdam,NL,4.88969,52.37403
+9,Sydney,AU,151.20732,-33.86785

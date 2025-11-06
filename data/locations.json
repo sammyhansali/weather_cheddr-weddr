@@ -1,36 +1,72 @@
-{
-    "locations": [
-        {
-            "location_id": 0,
-            "city": "Cambridge",
-            "state": "MA",
-            "country": "USA",
-            "longitude": -71.1056,
-            "latitude": 42.3751
-        },
-        {
-            "location_id": 1,
-            "city": "Boston",
-            "state": "MA",
-            "country": "USA",
-            "longitude": -71.0589,
-            "latitude": 42.3601
-        },
-        {
-            "location_id": 2,
-            "city": "New York City",
-            "state": "NY",
-            "country": "USA",
-            "longitude": -74.0060,
-            "latitude": 40.7128
-        },
-        {
-            "location_id": 3,
-            "city": "San Francisco",
-            "state": "CA",
-            "country": "USA",
-            "longitude": -122.4194,
-            "latitude": 37.7749
-        }
-    ]
-}
+[
+    {
+        "location_id": 0,
+        "city": "Cambridge",
+        "country": "US",
+        "longitude": -71.1056,
+        "latitude": 42.3751
+    },
+    {
+        "location_id": 1,
+        "city": "New York City",
+        "country": "US",
+        "longitude": -74.0060,
+        "latitude": 40.7128
+    },
+    {
+        "location_id": 2,
+        "city": "San Francisco",
+        "country": "US",
+        "longitude": -122.4194,
+        "latitude": 37.7749
+    },
+    {
+        "location_id": 3,
+        "city": "London",
+        "country": "GB",
+        "longitude": -0.12574,
+        "latitude":	51.50853
+    },
+    {
+        "location_id": 4,
+        "city": "Hanoi",
+        "country": "VN",
+        "longitude": 105.84117,
+        "latitude":	21.0245
+    },
+    {
+        "location_id": 5,
+        "city": "Tokyo",
+        "country": "JP",
+        "longitude": 139.69171,
+        "latitude": 35.6895
+    },
+    {
+        "location_id": 6,
+        "city": "Rabat",
+        "country": "MA",
+        "longitude": -6.83255,
+        "latitude": 34.01325
+    },
+    {
+        "location_id": 7,
+        "city": "Reykjavik",
+        "country": "IS",
+        "longitude": -21.89541,
+        "latitude": 64.13548
+    },
+    {
+        "location_id": 8,
+        "city": "Amsterdam",
+        "country": "NL",
+        "longitude": 4.88969,
+        "latitude": 52.37403
+    },
+    {
+        "location_id": 9,
+        "city": "Sydney",
+        "country": "AU",
+        "longitude": 151.20732,
+        "latitude": -33.86785
+    }
+]
