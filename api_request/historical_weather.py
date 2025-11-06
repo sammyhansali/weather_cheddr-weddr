@@ -10,7 +10,7 @@ params = {
     "longitude": "-71.1056",
     "start_date": "2025-01-01",
     "end_date": "2025-02-01",
-    "timezone": "America%2FNew_York",
+    "timezone": "America/New_York",
     "hourly": [
         "temperature_2m",
         "relative_humidity_2m",

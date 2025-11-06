@@ -38,7 +38,7 @@ def ingest_payload():
         cs.execute("use schema CHEDDR_WEDDR;")
         cs.execute("use warehouse LOADING;")
         cs.execute("""
-            insert into WEATHER_FORECAST (payload)
+            insert into HISTORICAL_WEATHER (payload)
             select parse_json(%s);
         """, params)
     finally:

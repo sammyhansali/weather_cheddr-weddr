@@ -5,3 +5,4 @@ sources:
     database: raw
     tables:
       - name: weather_forecast
+      - name: historical_weather
