@@ -1,0 +1,36 @@
+{
+    "locations": [
+        {
+            "location_id": 0,
+            "city": "Cambridge",
+            "state": "MA",
+            "country": "USA",
+            "longitude": -71.1056,
+            "latitude": 42.3751
+        },
+        {
+            "location_id": 1,
+            "city": "Boston",
+            "state": "MA",
+            "country": "USA",
+            "longitude": -71.0589,
+            "latitude": 42.3601
+        },
+        {
+            "location_id": 2,
+            "city": "New York City",
+            "state": "NY",
+            "country": "USA",
+            "longitude": -74.0060,
+            "latitude": 40.7128
+        },
+        {
+            "location_id": 3,
+            "city": "San Francisco",
+            "state": "CA",
+            "country": "USA",
+            "longitude": -122.4194,
+            "latitude": 37.7749
+        }
+    ]
+}

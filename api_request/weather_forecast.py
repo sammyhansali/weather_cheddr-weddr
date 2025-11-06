@@ -6,6 +6,8 @@ from pprint import pp
 
 url = "https://api.open-meteo.com/v1/forecast"
 params = {
+    "forecast_days": "1",
+    "temperature_unit": "fahrenheit",
     "latitude": "42.3751",
     "longitude": "-71.1056",
     "timezone": "America/New_York",
@@ -39,12 +41,16 @@ params = {
         "et0_fao_evapotranspiration",
     ]
 }
-cities = {
-    "cambridge,ma,usa": {
-        "latitude": "42.3751",
-        "longitude": "-71.1056",
+locations = [
+    {
+        "location_id": 0,
+        "city": "Cambridge",
+        "state": "MA",
+        "country": "USA",
+        "longitude": -71.1056,
+        "latitude": 42.3751,
     },
-}
+]
 
 def make_request():
     try:
