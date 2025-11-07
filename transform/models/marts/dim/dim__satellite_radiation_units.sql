@@ -5,7 +5,7 @@ src as (
     select top 1
         hourly_units
         
-    from {{ ref("stg__weather")}}
+    from {{ ref("stg__satellite_radiation")}}
 
 ),
 

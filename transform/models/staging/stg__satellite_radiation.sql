@@ -5,7 +5,7 @@ src as (
     select
         *
 
-    from {{ source('cheddr_weddr', 'weather')}}
+    from {{ source('cheddr_weddr', 'satellite_radiation')}}
 
 ),
 
