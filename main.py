@@ -1,6 +1,6 @@
 import json
-from api_request import weather_forecast, air_quality, satellite_radiation, flood
-from warehouse.ingest import ingest_setup, ingest_payload
+from api_request import weather, air_quality, satellite_radiation, flood
+from ingestion.ingest import ingest_setup, ingest
 
 def main():
     """
@@ -23,14 +23,13 @@ def main():
     for location in locations:
         if location["country"] != "US":
             satellite_radiation.make_request(location)
-        weather_forecast.make_request(location)
+        weather.make_request(location)
         air_quality.make_request(location)
         flood.make_request(location)
 
     # Step 2: Data ingestion into snowflake
-    ## Run the full_snowflake_setup.sql file first
-    # ingest_setup()
-    # ingest_payload()
+    ingest_setup()
+    ingest()
 
     # Step 3: DBT
     

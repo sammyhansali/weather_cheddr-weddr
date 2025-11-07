@@ -5,7 +5,7 @@ def make_request(location):
     latitude = location["latitude"]
     longitude = location["longitude"]
     location_id = location["location_id"]
-    endpoint = "weather_forecast"
+    endpoint = "weather"
 
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
