@@ -7,7 +7,7 @@ def request_and_save_data(url, params, location_id, endpoint):
     today = datetime.date.today().strftime('%m%d%Y')
     try:
         resp = requests.get(url=url, params=params)
-        print(resp.status_code)
+
         resp.raise_for_status
         if resp.status_code != 200: 
             raise requests.exceptions.HTTPError
