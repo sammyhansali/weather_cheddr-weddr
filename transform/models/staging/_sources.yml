@@ -4,5 +4,7 @@ sources:
   - name: cheddr_weddr
     database: raw
     tables:
-      - name: weather_forecast
-      - name: historical_weather
+      - name: weather
+      - name: air_quality
+      - name: satellite_radiation
+      - name: flood
