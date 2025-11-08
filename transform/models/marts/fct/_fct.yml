@@ -1,0 +1,112 @@
+models:
+  - name: fct__weather
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: location_id
+        data_type: number
+        constraints:
+          - type: not_null
+      - name: ts_time
+        data_type: timestamp_ntz
+        constraints:
+          - type: not_null
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: not_null
+      - name: value
+        data_type: float
+      - name: data_date
+        data_type: date
+      - name: load_ts
+        data_type: timestamp_ntz
+    constraints:
+      - type: primary_key
+        columns: [location_id, ts_time, field]
+        warn_unenforced: false
+
+  - name: fct__air_quality
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: location_id
+        data_type: number
+        constraints:
+          - type: not_null
+      - name: ts_time
+        data_type: timestamp_ntz
+        constraints:
+          - type: not_null
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: not_null
+      - name: value
+        data_type: float
+      - name: data_date
+        data_type: date
+      - name: load_ts
+        data_type: timestamp_ntz
+    constraints:
+      - type: primary_key
+        columns: [location_id, ts_time, field]
+        warn_unenforced: false
+
+  - name: fct__satellite_radiation
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: location_id
+        data_type: number
+        constraints:
+          - type: not_null
+      - name: ts_time
+        data_type: timestamp_ntz
+        constraints:
+          - type: not_null
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: not_null
+      - name: value
+        data_type: float
+      - name: data_date
+        data_type: date
+      - name: load_ts
+        data_type: timestamp_ntz
+    constraints:
+      - type: primary_key
+        columns: [location_id, ts_time, field]
+        warn_unenforced: false
+
+  - name: fct__flood
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: location_id
+        data_type: number
+        constraints:
+          - type: not_null
+      - name: ts_time
+        data_type: timestamp_ntz
+        constraints:
+          - type: not_null
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: not_null
+      - name: value
+        data_type: float
+      - name: data_date
+        data_type: date
+      - name: load_ts
+        data_type: timestamp_ntz
+    constraints:
+      - type: primary_key
+        columns: [location_id, ts_time, field]
+        warn_unenforced: false

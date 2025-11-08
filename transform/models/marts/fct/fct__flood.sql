@@ -4,7 +4,7 @@ src as (
 
     select
         location_id,
-        date,
+        data_date,
         load_ts,
         daily
         
@@ -39,7 +39,7 @@ flattened as (
         tt.ts_time,
         j.key::varchar as field,
         k.value::float as value,
-        f.date,
+        f.data_date,
         f.load_ts
 
     from src as f,

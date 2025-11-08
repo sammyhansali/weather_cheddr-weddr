@@ -12,8 +12,8 @@ src as (
 final as (
 
     select
-        location_id,
-        date,
+        location_id::number as location_id,
+        to_date(date, 'MMDDYYYY') as data_date,
         load_ts,
         payload:hourly as hourly,
         payload:hourly_units as hourly_units
