@@ -1,0 +1,71 @@
+models:
+  - name: dim__weather_units
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: primary_key
+            warn_unenforced: false
+      - name: units
+        data_type: varchar
+
+  - name: dim__air_quality_units
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: primary_key
+            warn_unenforced: false
+      - name: units
+        data_type: varchar
+
+  - name: dim__satellite_radiation_units
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: primary_key
+            warn_unenforced: false
+      - name: units
+        data_type: varchar
+
+  - name: dim__flood_units
+    config:
+      contract:
+        enforced: true
+    columns: 
+      - name: field
+        data_type: varchar
+        constraints:
+          - type: primary_key
+            warn_unenforced: false
+      - name: units
+        data_type: varchar
+
+  - name: dim__locations
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: location_id
+        data_type: number
+        constraints:
+          - type: primary_key
+            warn_unenforced: false
+      - name: city
+        data_type: varchar
+      - name: country
+        data_type: varchar
+      - name: longitude
+        data_type: float
+      - name: latitude
+        data_type: float

@@ -8,6 +8,10 @@ models:
         data_type: number
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__locations')
+            to_columns: [location_id]
+            warn_unenforced: false
       - name: ts_time
         data_type: timestamp_ntz
         constraints:
@@ -16,6 +20,10 @@ models:
         data_type: varchar
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__weather_units')
+            to_columns: [field]
+            warn_unenforced: false
       - name: value
         data_type: float
       - name: data_date
@@ -36,6 +44,10 @@ models:
         data_type: number
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__locations')
+            to_columns: [location_id]
+            warn_unenforced: false
       - name: ts_time
         data_type: timestamp_ntz
         constraints:
@@ -44,6 +56,10 @@ models:
         data_type: varchar
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__air_quality_units')
+            to_columns: [field]
+            warn_unenforced: false
       - name: value
         data_type: float
       - name: data_date
@@ -64,6 +80,10 @@ models:
         data_type: number
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__locations')
+            to_columns: [location_id]
+            warn_unenforced: false
       - name: ts_time
         data_type: timestamp_ntz
         constraints:
@@ -72,6 +92,10 @@ models:
         data_type: varchar
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__satellite_radiation_units')
+            to_columns: [field]
+            warn_unenforced: false
       - name: value
         data_type: float
       - name: data_date
@@ -92,6 +116,10 @@ models:
         data_type: number
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__locations')
+            to_columns: [location_id]
+            warn_unenforced: false
       - name: ts_time
         data_type: timestamp_ntz
         constraints:
@@ -100,6 +128,10 @@ models:
         data_type: varchar
         constraints:
           - type: not_null
+          - type: foreign_key
+            to: ref('dim__flood_units')
+            to_columns: [field]
+            warn_unenforced: false
       - name: value
         data_type: float
       - name: data_date
