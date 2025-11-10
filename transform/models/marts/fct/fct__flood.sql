@@ -1,3 +1,12 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key=["location_id", "ts_time", "field"],
+        incremental_strategy="merge",  
+        on_schema_change="fail"
+    )
+}}
+
 with
 
 src as (
@@ -52,3 +61,10 @@ flattened as (
 )
 
 select * from flattened
+{% if is_incremental() %}
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from {{ this }})
+
+{% endif %}

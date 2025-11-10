@@ -15,17 +15,17 @@ def main():
     PK for fact tables: location_id, ts, field
     """
 
-    # # Step 1: Make API request and save payload
-    fp = "data/locations.json"
-    with open(fp, "r") as f:
-        locations = json.load(f)
+    # # # Step 1: Make API request and save payload
+    # fp = "data/locations.json"
+    # with open(fp, "r") as f:
+    #     locations = json.load(f)
     
-    for location in locations:
-        if location["country"] != "US":
-            satellite_radiation.make_request(location)
-        weather.make_request(location)
-        air_quality.make_request(location)
-        flood.make_request(location)
+    # for location in locations:
+    #     if location["country"] != "US":
+    #         satellite_radiation.make_request(location)
+    #     weather.make_request(location)
+    #     air_quality.make_request(location)
+    #     flood.make_request(location)
 
     # Step 2: Data ingestion into snowflake
     ingest_setup()
