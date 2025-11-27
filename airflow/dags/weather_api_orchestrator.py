@@ -41,6 +41,7 @@ def weather_api_orchestrator():
         endpoint = request["endpoint"]
         location_id = str(location["location_id"])
 
+        country = location["country"] # TODO: cities in the US CANNOT get satellite radiation data.
         latitude = location["latitude"]
         longitude = location["longitude"]
         url = request["url"]
@@ -65,7 +66,7 @@ def weather_api_orchestrator():
     
     @task
     def load_response_to_s3(response):
-        print(response)
+        # print(response)
         path = f"raw/{response[0]}/{response[1]}/location_id={response[2]}/data.json"
         hook = S3Hook(aws_conn_id="aws_default")
         hook.load_string(
@@ -76,7 +77,7 @@ def weather_api_orchestrator():
         )
 
     @task
-    def ingest_to_snowflake(file_path):
+    def ingest_from_s3_to_snowflake(file_path):
         pass
 
     # @task()
