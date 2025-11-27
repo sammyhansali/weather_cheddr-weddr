@@ -7,5 +7,9 @@ services:
       - 8000:8080
     volumes:
       - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/common:/opt/airflow/common
+      - ./airflow/config:/opt/airflow/config
+    environment:
+      - PYTHONPATH=/opt/airflow:/opt/airflow/common
     command: >
       bash -c "airflow db migrate && airflow standalone"
