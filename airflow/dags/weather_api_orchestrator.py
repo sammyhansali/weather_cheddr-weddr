@@ -1,10 +1,14 @@
+import os
 import json
+import requests
 from airflow.sdk import dag, task
 from datetime import datetime, timedelta
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
-from common.endpoint_params import weather
+# Constants
+S3_BUCKET = "weather-cheddr-weddr"
 
-
+# DAG logic
 @dag(
     dag_id = "weather_api_orchestrator",
     description = "",
@@ -19,19 +23,57 @@ def weather_api_orchestrator():
         fp = "config/locations.json"
         with open(fp, "r") as f:
             locations = json.load(f)
-        return locations
+        return locations[:2]
     
     @task
-    def get_endpoints():
-        fp = "config/endpoints.json"
+    def get_requests():
+        fp = "config/requests.json"
         with open(fp, "r") as f:
-            endpoints = json.load(f)
-        return endpoints
+            requests = json.load(f)
+        return requests[:2]
 
     @task
-    def fetch_endpoint(location, endpoint):
+    def fetch_response(location, request):
         print(location)
-        print(endpoint)
+        print(request)
+
+        date = datetime.today().strftime('%Y-%m-%d')
+        endpoint = request["endpoint"]
+        location_id = str(location["location_id"])
+
+        latitude = location["latitude"]
+        longitude = location["longitude"]
+        url = request["url"]
+        params = request["params"]
+        params["latitude"] = latitude
+        params["longitude"] = longitude
+
+        try:
+            resp = requests.get(url=url, params=params)
+
+            resp.raise_for_status
+            if resp.status_code != 200: 
+                raise requests.exceptions.HTTPError
+            content = json.loads(resp.content)
+            return [date, endpoint, location_id, content]
+
+        except requests.exceptions.HTTPError as err:
+            print("API request failed. Error details: ", err)
+
+        except Exception as err:
+            print("An error occurred. Error details: ", err)
+    
+    @task
+    def load_response_to_s3(response):
+        print(response)
+        path = f"raw/{response[0]}/{response[1]}/location_id={response[2]}/data.json"
+        hook = S3Hook(aws_conn_id="aws_default")
+        hook.load_string(
+            string_data=json.dumps(response[3]),
+            key=path,
+            bucket_name=S3_BUCKET,
+            replace=True,
+        )
 
     @task
     def ingest_to_snowflake(file_path):
@@ -42,13 +84,13 @@ def weather_api_orchestrator():
     #     pass
 
     locations = get_locations()
-    endpoints = get_endpoints()
-    fetch_tasks = fetch_endpoint.expand(
-        endpoint=endpoints,
+    reqs = get_requests()
+    responses = fetch_response.expand(
+        request=reqs,
         location=locations,
     )
-    ingest_to_snowflake.expand(
-        file_path=fetch_tasks,
+    load_response_to_s3.expand(
+        response=responses,
     )
 
 weather_api_orchestrator()
