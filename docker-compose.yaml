@@ -9,8 +9,11 @@ services:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/common:/opt/airflow/common
       - ./airflow/config:/opt/airflow/config
+      - ./airflow/airflow.cfg:/opt/airflow/airflow.cfg
     environment:
       PYTHONPATH: "/opt/airflow:/opt/airflow/common"
       AIRFLOW_CONN_AWS_DEFAULT: "aws://${AWS_ACCESS_KEY}:${AWS_SECRET_ACCESS_KEY}@/?region_name=${AWS_DEFAULT_REGION}"
+      AIRFLOW_HOME: "/opt/airflow"
+      AIRFLOW__WEBSERVER__AUTHENTICATE: "False"
     command: >
       bash -c "airflow db migrate && airflow standalone"
