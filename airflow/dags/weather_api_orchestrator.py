@@ -4,6 +4,7 @@ import requests
 from airflow.sdk import dag, task
 from datetime import datetime, timedelta
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 
 # Constants
 S3_BUCKET = "weather-cheddr-weddr"
@@ -23,14 +24,14 @@ def weather_api_orchestrator():
         fp = "config/locations.json"
         with open(fp, "r") as f:
             locations = json.load(f)
-        return locations[:2]
+        return locations[:2] # TODO: remove this so we can process all data at once.
     
     @task
     def get_requests():
         fp = "config/requests.json"
         with open(fp, "r") as f:
             requests = json.load(f)
-        return requests[:2]
+        return requests[:2] # TODO: remove this so we can process all data at once.
 
     @task
     def fetch_response(location, request):
@@ -66,19 +67,56 @@ def weather_api_orchestrator():
     
     @task
     def load_response_to_s3(response):
-        # print(response)
-        path = f"raw/{response[0]}/{response[1]}/location_id={response[2]}/data.json"
+        date = response[0]
+        endpoint = response[1]
+        location_id = response[2]
+        payload = response[3]
+
+        key = f"raw/{endpoint}/{date}/location_id={location_id}/data.json"
+        data = {
+            "date": date,
+            "endpoint": endpoint,
+            "location_id": location_id,
+            "payload": payload
+        }
         hook = S3Hook(aws_conn_id="aws_default")
         hook.load_string(
-            string_data=json.dumps(response[3]),
-            key=path,
+            string_data=json.dumps(data),
+            key=key,
             bucket_name=S3_BUCKET,
             replace=True,
         )
+        return key
 
     @task
-    def ingest_from_s3_to_snowflake(file_path):
-        pass
+    def truncate_snowflake_target_tables():
+        hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
+        for table_name in ["WEATHER", "AIR_QUALITY", "SATELLITE_RADIATION", "FLOOD"]:
+            truncate_raw_sql = f"truncate table {table_name};"
+            hook.run(truncate_raw_sql)
+        
+    @task
+    def ingest_from_s3_to_snowflake(s3_key):
+        print(s3_key)
+        endpoint = s3_key.split("/")[1]
+        today = s3_key.split("/")[2]
+        table_name = endpoint.upper().replace("-","_")
+        # truncate_raw_sql = f"truncate table {table_name};"
+        copy_into_raw_sql = f"""
+            copy into {table_name} (payload, location_id, date, load_ts)
+            from (
+                select 
+                    $1:payload,
+                    $1:location_id,
+                    $1:date,
+                    current_timestamp()
+                from @my_s3_stage/{endpoint}/{today}
+            )
+            on_error = abort_statement
+            ;
+        """
+        hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
+        hook.run(copy_into_raw_sql)
 
     # @task()
     # def dbt_run():
@@ -90,8 +128,14 @@ def weather_api_orchestrator():
         request=reqs,
         location=locations,
     )
-    load_response_to_s3.expand(
+    keys = load_response_to_s3.expand(
         response=responses,
     )
+    truncate = truncate_snowflake_target_tables()
+    ingest = ingest_from_s3_to_snowflake.expand(
+        s3_key=keys
+    )
+
+    truncate >> ingest
 
 weather_api_orchestrator()
