@@ -1,0 +1,13 @@
+[0m11:53:51.915475 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017BB3266C90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017BB5431910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017BB6953290>]}
+
+
+============================== 11:53:51.927724 | 321caa41-f8da-4f5d-8d7b-e5f8b073cb7d ==============================
+[0m11:53:51.927724 [info ] [MainThread]: Running with dbt=1.10.13
+[0m11:53:51.930250 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'profiles_dir': 'C:\\Users\\sammy\\.dbt', 'log_format': 'default', 'use_colors': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'indirect_selection': 'eager', 'partial_parse': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'c:\\Users\\sammy\\Projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\dbt_internal_packages\\dbt-adapters\\logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'invocation_command': 'dbt ', 'printer_width': '80', 'target_path': 'None'}
+[0m11:53:52.438450 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '321caa41-f8da-4f5d-8d7b-e5f8b073cb7d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017BB7A73110>]}
+[0m11:53:52.515392 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m11:53:52.519461 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m11:53:52.525010 [debug] [MainThread]: Command `cli deps` succeeded at 11:53:52.524496 after 0.83 seconds
+[0m11:53:52.527041 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017BB6925150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017BB68FB110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000017BB68F8AD0>]}
+[0m11:53:52.528554 [debug] [MainThread]: Flushing usage events
+[0m11:53:54.165597 [debug] [MainThread]: An error was encountered while trying to flush usage events

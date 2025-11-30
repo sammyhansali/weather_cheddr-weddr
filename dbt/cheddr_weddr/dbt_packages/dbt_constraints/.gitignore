@@ -1,0 +1,7 @@
+
+target/
+dbt_packages/
+logs/
+.DS_Store
+.gitconfig
+dbt_internal_packages/

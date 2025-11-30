@@ -1,0 +1,12 @@
+
+    
+    
+    truncate table "ANALYTICS"."CHEDDR_WEDDR"."SEED__LOCATIONS";
+    -- dbt seed --
+    
+            insert into ANALYTICS.CHEDDR_WEDDR.seed__locations (location_id, city, country, longitude, latitude) values
+            (%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s)
+        
+
+;
+  
