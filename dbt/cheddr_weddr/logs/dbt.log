@@ -35731,3 +35731,1840 @@ select * from flattened
 [0m12:02:39.248742 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D6C3F2F0D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D6C3F2EDD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D6C3F2F110>]}
 [0m12:02:39.249299 [debug] [MainThread]: Flushing usage events
 [0m12:02:40.221078 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:06:59.016578 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDE6E7A7D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDE6E79210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDE6E7AF50>]}
+
+
+============================== 12:06:59.024767 | e744f433-1cec-489c-a9e9-70cc6186a93d ==============================
+[0m12:06:59.024767 [info ] [MainThread]: Running with dbt=1.10.13
+[0m12:06:59.025777 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'write_json': 'True', 'no_print': 'None', 'log_format': 'default', 'use_colors': 'True', 'warn_error': 'None', 'indirect_selection': 'eager', 'partial_parse': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': 'c:\\Users\\sammy\\Projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\logs', 'version_check': 'True', 'use_experimental_parser': 'False', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': 'C:\\Users\\sammy\\.dbt', 'invocation_command': 'dbt ', 'printer_width': '80', 'target_path': 'None'}
+[0m12:06:59.414424 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'e744f433-1cec-489c-a9e9-70cc6186a93d', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDE7F60310>]}
+[0m12:06:59.513601 [error] [MainThread]: Encountered an error:
+[WinError 32] The process cannot access the file because it is being used by another process: 'dbt_packages\\dbt_constraints\\integration_tests\\dbt_packages\\dbt_constraints\\docs\\index.html'
+[0m12:06:59.524398 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 632, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'dbt_packages\\dbt_constraints\\integration_tests\\dbt_packages\\dbt_constraints\\docs\\index.html'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 178, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 254, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 303, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\main.py", line 461, in deps
+    results = task.run()
+              ^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\task\deps.py", line 231, in run
+    system.rmtree(self.project.packages_install_path)
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt_common\clients\system.py", line 723, in rmtree
+    return shutil.rmtree(path, onerror=chmod_and_retry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 787, in rmtree
+    return _rmtree_unsafe(path, onerror)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 629, in _rmtree_unsafe
+    _rmtree_unsafe(fullname, onerror)
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 629, in _rmtree_unsafe
+    _rmtree_unsafe(fullname, onerror)
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 629, in _rmtree_unsafe
+    _rmtree_unsafe(fullname, onerror)
+  [Previous line repeated 2 more times]
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 634, in _rmtree_unsafe
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt_common\clients\system.py", line 669, in chmod_and_retry
+    func(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'dbt_packages\\dbt_constraints\\integration_tests\\dbt_packages\\dbt_constraints\\docs\\index.html'
+
+[0m12:06:59.527650 [debug] [MainThread]: Command `cli deps` failed at 12:06:59.526544 after 0.68 seconds
+[0m12:06:59.529164 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDE6DA0950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDE7F37310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDE6EA56D0>]}
+[0m12:06:59.530675 [debug] [MainThread]: Flushing usage events
+[0m12:07:00.617275 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:07:19.251177 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACC68966D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACCACA8B10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACCACAA590>]}
+
+
+============================== 12:07:19.255178 | 3514b5b9-c33a-4e1d-8933-e9a67b101bf2 ==============================
+[0m12:07:19.255178 [info ] [MainThread]: Running with dbt=1.10.13
+[0m12:07:19.256685 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'no_print': 'None', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\sammy\\.dbt', 'use_colors': 'True', 'warn_error': 'None', 'static_parser': 'True', 'partial_parse': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'log_path': 'C:\\Users\\sammy\\Projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'log_format': 'default', 'invocation_command': 'dbt test', 'printer_width': '80', 'write_json': 'True'}
+[0m12:07:19.920003 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '3514b5b9-c33a-4e1d-8933-e9a67b101bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACC773CB50>]}
+[0m12:07:20.001181 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '3514b5b9-c33a-4e1d-8933-e9a67b101bf2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACC9C57690>]}
+[0m12:07:20.002234 [info ] [MainThread]: Registered adapter: snowflake=1.10.2
+[0m12:07:20.443337 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Failed to read package: Runtime Error
+    No dbt_project.yml found at expected path C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\dbt_packages\dbt_constraints\dbt_project.yml
+    Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+    
+
+Error encountered in C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\dbt_packages\dbt_constraints
+[0m12:07:20.446346 [debug] [MainThread]: Command `dbt test` failed at 12:07:20.446346 after 1.29 seconds
+[0m12:07:20.447333 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACCACAB050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACCACAB010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001ACCCCD0190>]}
+[0m12:07:20.447333 [debug] [MainThread]: Flushing usage events
+[0m12:07:21.075648 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:07:42.904326 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D69C1D8AD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D69C1D9690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D69C1DA210>]}
+
+
+============================== 12:07:42.908705 | de649f26-dc3c-4457-91cb-ad7580b7d93f ==============================
+[0m12:07:42.908705 [info ] [MainThread]: Running with dbt=1.10.13
+[0m12:07:42.909246 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'write_json': 'True', 'invocation_command': 'dbt deps', 'warn_error': 'None', 'static_parser': 'True', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': 'C:\\Users\\sammy\\Projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\logs', 'version_check': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': 'C:\\Users\\sammy\\.dbt', 'use_colors': 'True', 'printer_width': '80', 'target_path': 'None'}
+[0m12:07:43.100070 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'de649f26-dc3c-4457-91cb-ad7580b7d93f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D69C235950>]}
+[0m12:07:43.309374 [error] [MainThread]: Encountered an error:
+[WinError 32] The process cannot access the file because it is being used by another process: 'dbt_packages\\dbt_constraints\\integration_tests'
+[0m12:07:43.313924 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 636, in _rmtree_unsafe
+    os.rmdir(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'dbt_packages\\dbt_constraints\\integration_tests'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 178, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 254, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\requires.py", line 303, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\cli\main.py", line 461, in deps
+    results = task.run()
+              ^^^^^^^^^^
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt\task\deps.py", line 231, in run
+    system.rmtree(self.project.packages_install_path)
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt_common\clients\system.py", line 723, in rmtree
+    return shutil.rmtree(path, onerror=chmod_and_retry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 787, in rmtree
+    return _rmtree_unsafe(path, onerror)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 629, in _rmtree_unsafe
+    _rmtree_unsafe(fullname, onerror)
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 629, in _rmtree_unsafe
+    _rmtree_unsafe(fullname, onerror)
+  File "C:\Users\sammy\AppData\Roaming\uv\python\cpython-3.11.13-windows-x86_64-none\Lib\shutil.py", line 638, in _rmtree_unsafe
+    onerror(os.rmdir, path, sys.exc_info())
+  File "C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Lib\site-packages\dbt_common\clients\system.py", line 669, in chmod_and_retry
+    func(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'dbt_packages\\dbt_constraints\\integration_tests'
+
+[0m12:07:43.315925 [debug] [MainThread]: Command `dbt deps` failed at 12:07:43.315925 after 0.50 seconds
+[0m12:07:43.316926 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D69C1DA210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D69C1DAD50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D695418F10>]}
+[0m12:07:43.316926 [debug] [MainThread]: Flushing usage events
+[0m12:07:44.066246 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:07:57.271152 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F6879850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F6879250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F687BB10>]}
+
+
+============================== 12:07:57.274664 | 83d41d79-415d-4cee-abe5-9b7a413abe19 ==============================
+[0m12:07:57.274664 [info ] [MainThread]: Running with dbt=1.10.13
+[0m12:07:57.275464 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'log_format': 'default', 'printer_width': '80', 'use_colors': 'True', 'profiles_dir': 'C:\\Users\\sammy\\.dbt', 'warn_error': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'C:\\Users\\sammy\\Projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'introspect': 'True', 'quiet': 'False', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'invocation_command': 'dbt deps', 'cache_selected_only': 'False', 'target_path': 'None'}
+[0m12:07:57.457143 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '83d41d79-415d-4cee-abe5-9b7a413abe19', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F68ACB50>]}
+[0m12:07:57.490843 [debug] [MainThread]: Set downloads directory='C:\Users\sammy\AppData\Local\Temp\dbt-downloads-vwksc1i6'
+[0m12:07:57.491851 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m12:07:58.215890 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m12:07:58.223760 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/Snowflake-Labs/dbt_constraints.json
+[0m12:07:58.759311 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/Snowflake-Labs/dbt_constraints.json 200
+[0m12:07:58.767504 [info ] [MainThread]: Installing Snowflake-Labs/dbt_constraints
+[0m12:07:59.712727 [info ] [MainThread]: Installed from version 1.0.6
+[0m12:07:59.713728 [info ] [MainThread]: Up to date!
+[0m12:07:59.715750 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '83d41d79-415d-4cee-abe5-9b7a413abe19', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F79F1950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F68781D0>]}
+[0m12:07:59.719068 [debug] [MainThread]: Command `dbt deps` succeeded at 12:07:59.719068 after 2.54 seconds
+[0m12:07:59.720135 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F78C1D90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242F6612310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000242EFB28D10>]}
+[0m12:07:59.720135 [debug] [MainThread]: Flushing usage events
+[0m12:08:00.414474 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:08:10.633180 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025331128D50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533112ACD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000253311284D0>]}
+
+
+============================== 12:08:10.636692 | d23beb4e-a349-400a-b739-ee8e9d6a5a32 ==============================
+[0m12:08:10.636692 [info ] [MainThread]: Running with dbt=1.10.13
+[0m12:08:10.636692 [debug] [MainThread]: running dbt with arguments {'log_format': 'default', 'cache_selected_only': 'False', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\sammy\\.dbt', 'invocation_command': 'dbt run', 'warn_error': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'C:\\Users\\sammy\\Projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'False', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'use_colors': 'True', 'printer_width': '80', 'write_json': 'True'}
+[0m12:08:11.337415 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533104A550>]}
+[0m12:08:11.425965 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002532DBBCB90>]}
+[0m12:08:11.428475 [info ] [MainThread]: Registered adapter: snowflake=1.10.2
+[0m12:08:11.911794 [debug] [MainThread]: checksum: 9f0c81e2574b4ff463f3d16d080df83c6982fc0372c9feeacae0504ac9ea3ffe, vars: {}, profile: , target: , version: 1.10.13
+[0m12:08:12.319368 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 8 files changed.
+[0m12:08:12.322378 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\default__test_constraints.sql
+[0m12:08:12.323427 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\snowflake__create_constraints.sql
+[0m12:08:12.324426 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\vertica__create_constraints.sql
+[0m12:08:12.325423 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\redshift__create_constraints.sql
+[0m12:08:12.326394 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\create_constraints.sql
+[0m12:08:12.326394 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\postgres__create_constraints.sql
+[0m12:08:12.328423 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\oracle__create_constraints.sql
+[0m12:08:12.328966 [debug] [MainThread]: Partial parsing: updated file: dbt_constraints://macros\bigquery__create_constraints.sql
+[0m12:08:12.895140 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000253332B8050>]}
+[0m12:08:13.024457 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\target\manifest.json
+[0m12:08:13.028398 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\target\semantic_manifest.json
+[0m12:08:13.052238 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533328C5D0>]}
+[0m12:08:13.053236 [info ] [MainThread]: Found 13 models, 1 seed, 1 operation, 4 sources, 594 macros
+[0m12:08:13.053236 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533312AE50>]}
+[0m12:08:13.057394 [info ] [MainThread]: 
+[0m12:08:13.057987 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m12:08:13.058534 [info ] [MainThread]: 
+[0m12:08:13.060069 [debug] [MainThread]: Acquiring new snowflake connection 'master'
+[0m12:08:13.066760 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_ANALYTICS'
+[0m12:08:13.169185 [debug] [ThreadPool]: Using snowflake connection "list_ANALYTICS"
+[0m12:08:13.170230 [debug] [ThreadPool]: On list_ANALYTICS: show terse schemas in database ANALYTICS
+    limit 10000
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "connection_name": "list_ANALYTICS"} */
+[0m12:08:13.170926 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m12:08:14.866915 [debug] [ThreadPool]: SQL status: SUCCESS 3 in 1.697 seconds
+[0m12:08:14.879107 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_ANALYTICS_CHEDDR_WEDDR'
+[0m12:08:14.901156 [debug] [ThreadPool]: Using snowflake connection "list_ANALYTICS_CHEDDR_WEDDR"
+[0m12:08:14.902806 [debug] [ThreadPool]: On list_ANALYTICS_CHEDDR_WEDDR: show objects in ANALYTICS.CHEDDR_WEDDR
+    limit 10000
+    
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "connection_name": "list_ANALYTICS_CHEDDR_WEDDR"} */;
+[0m12:08:14.902806 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m12:08:15.347021 [debug] [ThreadPool]: SQL status: SUCCESS 14 in 0.444 seconds
+[0m12:08:15.357063 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025333274CD0>]}
+[0m12:08:15.365687 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.dim__locations
+[0m12:08:15.367197 [info ] [Thread-1 (]: 1 of 13 START sql table model CHEDDR_WEDDR.dim__locations ...................... [RUN]
+[0m12:08:15.371204 [debug] [Thread-1 (]: Acquiring new snowflake connection 'model.cheddr_weddr.dim__locations'
+[0m12:08:15.372255 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.dim__locations
+[0m12:08:15.386434 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.dim__locations"
+[0m12:08:15.387432 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.dim__locations
+[0m12:08:15.447042 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__locations"
+[0m12:08:15.448588 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__locations: select * from (
+        with
+
+src as (
+    
+    select 
+        location_id::number as location_id,
+        city::varchar as city,
+        country::varchar as country,
+        longitude::float as longitude,
+        latitude::float as latitude
+    
+    from ANALYTICS.CHEDDR_WEDDR.seed__locations
+
+)
+
+select * from src
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__locations"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__locations"} */
+[0m12:08:15.449147 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m12:08:15.878161 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.429 seconds
+[0m12:08:15.903919 [warn ] [Thread-1 (]: Detected columns with numeric type and unspecified precision/scale, this can lead to unintended rounding: ['location_id']`
+[0m12:08:15.905921 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__locations"
+[0m12:08:15.906883 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__locations: select * from (
+        select
+    
+      
+    cast(null as number)
+     as location_id, 
+      
+    cast(null as varchar)
+     as city, 
+      
+    cast(null as varchar)
+     as country, 
+      
+    cast(null as float)
+     as longitude, 
+      
+    cast(null as float)
+     as latitude
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__locations"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__locations"} */
+[0m12:08:16.012367 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.104 seconds
+[0m12:08:16.068731 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.dim__locations"
+[0m12:08:16.070996 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__locations"
+[0m12:08:16.070996 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__locations: create or replace transient table ANALYTICS.CHEDDR_WEDDR.dim__locations
+    
+  (
+    location_id number primary key,
+    city varchar,
+    country varchar,
+    longitude float,
+    latitude float
+    
+    )
+
+    
+    
+    
+    as (
+    select location_id, city, country, longitude, latitude
+    from (
+        with
+
+src as (
+    
+    select 
+        location_id::number as location_id,
+        city::varchar as city,
+        country::varchar as country,
+        longitude::float as longitude,
+        latitude::float as latitude
+    
+    from ANALYTICS.CHEDDR_WEDDR.seed__locations
+
+)
+
+select * from src
+    ) as model_subq
+    )
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__locations"} */;
+[0m12:08:16.651536 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.579 seconds
+[0m12:08:16.693935 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025333272550>]}
+[0m12:08:16.694942 [info ] [Thread-1 (]: 1 of 13 OK created sql table model CHEDDR_WEDDR.dim__locations ................. [[32mSUCCESS 1[0m in 1.32s]
+[0m12:08:16.695952 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.dim__locations
+[0m12:08:16.696954 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.stg__air_quality
+[0m12:08:16.698497 [info ] [Thread-1 (]: 2 of 13 START sql view model CHEDDR_WEDDR.stg__air_quality ..................... [RUN]
+[0m12:08:16.698497 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.dim__locations, now model.cheddr_weddr.stg__air_quality)
+[0m12:08:16.699509 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.stg__air_quality
+[0m12:08:16.703164 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.stg__air_quality"
+[0m12:08:16.704163 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.stg__air_quality
+[0m12:08:16.730337 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.stg__air_quality"
+[0m12:08:16.732439 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.stg__air_quality"
+[0m12:08:16.732439 [debug] [Thread-1 (]: On model.cheddr_weddr.stg__air_quality: create or replace   view ANALYTICS.CHEDDR_WEDDR.stg__air_quality
+  
+  
+  
+  
+  as (
+    with
+
+src as (
+
+    select
+        *
+
+    from raw.cheddr_weddr.air_quality
+
+),
+
+final as (
+
+    select
+        location_id::number as location_id,
+        date::date as data_date,
+        load_ts,
+        payload:hourly as hourly,
+        payload:hourly_units as hourly_units
+    
+    from src
+
+)
+
+select * from final
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.stg__air_quality"} */;
+[0m12:08:16.931759 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.197 seconds
+[0m12:08:16.939316 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000253340A9210>]}
+[0m12:08:16.941558 [info ] [Thread-1 (]: 2 of 13 OK created sql view model CHEDDR_WEDDR.stg__air_quality ................ [[32mSUCCESS 1[0m in 0.24s]
+[0m12:08:16.944061 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.stg__air_quality
+[0m12:08:16.946086 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.stg__flood
+[0m12:08:16.947073 [info ] [Thread-1 (]: 3 of 13 START sql view model CHEDDR_WEDDR.stg__flood ........................... [RUN]
+[0m12:08:16.948587 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.stg__air_quality, now model.cheddr_weddr.stg__flood)
+[0m12:08:16.949149 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.stg__flood
+[0m12:08:16.956490 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.stg__flood"
+[0m12:08:16.957532 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.stg__flood
+[0m12:08:16.964322 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.stg__flood"
+[0m12:08:16.965320 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.stg__flood"
+[0m12:08:16.966705 [debug] [Thread-1 (]: On model.cheddr_weddr.stg__flood: create or replace   view ANALYTICS.CHEDDR_WEDDR.stg__flood
+  
+  
+  
+  
+  as (
+    with
+
+src as (
+
+    select
+        *
+
+    from raw.cheddr_weddr.flood
+
+),
+
+final as (
+
+    select
+        location_id::number as location_id,
+        date::date as data_date,
+        load_ts,
+        payload:daily as daily,
+        payload:daily_units as daily_units
+    
+    from src
+
+)
+
+select * from final
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.stg__flood"} */;
+[0m12:08:17.165674 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.198 seconds
+[0m12:08:17.174416 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000253346AE1D0>]}
+[0m12:08:17.177366 [info ] [Thread-1 (]: 3 of 13 OK created sql view model CHEDDR_WEDDR.stg__flood ...................... [[32mSUCCESS 1[0m in 0.22s]
+[0m12:08:17.179465 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.stg__flood
+[0m12:08:17.180879 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.stg__satellite_radiation
+[0m12:08:17.183187 [info ] [Thread-1 (]: 4 of 13 START sql view model CHEDDR_WEDDR.stg__satellite_radiation ............. [RUN]
+[0m12:08:17.184229 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.stg__flood, now model.cheddr_weddr.stg__satellite_radiation)
+[0m12:08:17.185227 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.stg__satellite_radiation
+[0m12:08:17.190550 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.stg__satellite_radiation"
+[0m12:08:17.193179 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.stg__satellite_radiation
+[0m12:08:17.198528 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.stg__satellite_radiation"
+[0m12:08:17.200248 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.stg__satellite_radiation"
+[0m12:08:17.200791 [debug] [Thread-1 (]: On model.cheddr_weddr.stg__satellite_radiation: create or replace   view ANALYTICS.CHEDDR_WEDDR.stg__satellite_radiation
+  
+  
+  
+  
+  as (
+    with
+
+src as (
+
+    select
+        *
+
+    from raw.cheddr_weddr.satellite_radiation
+
+),
+
+final as (
+
+    select
+        location_id::number as location_id,
+        date::date as data_date,
+        load_ts,
+        payload:hourly as hourly,
+        payload:hourly_units as hourly_units
+    
+    from src
+
+)
+
+select * from final
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.stg__satellite_radiation"} */;
+[0m12:08:17.374133 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.172 seconds
+[0m12:08:17.382973 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533576FA50>]}
+[0m12:08:17.385054 [info ] [Thread-1 (]: 4 of 13 OK created sql view model CHEDDR_WEDDR.stg__satellite_radiation ........ [[32mSUCCESS 1[0m in 0.20s]
+[0m12:08:17.387015 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.stg__satellite_radiation
+[0m12:08:17.389260 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.stg__weather
+[0m12:08:17.391132 [info ] [Thread-1 (]: 5 of 13 START sql view model CHEDDR_WEDDR.stg__weather ......................... [RUN]
+[0m12:08:17.394154 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.stg__satellite_radiation, now model.cheddr_weddr.stg__weather)
+[0m12:08:17.395188 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.stg__weather
+[0m12:08:17.399512 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.stg__weather"
+[0m12:08:17.401676 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.stg__weather
+[0m12:08:17.406733 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.stg__weather"
+[0m12:08:17.409224 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.stg__weather"
+[0m12:08:17.410554 [debug] [Thread-1 (]: On model.cheddr_weddr.stg__weather: create or replace   view ANALYTICS.CHEDDR_WEDDR.stg__weather
+  
+  
+  
+  
+  as (
+    with
+
+src as (
+
+    select
+        *
+
+    from raw.cheddr_weddr.weather
+
+),
+
+final as (
+
+    select
+        location_id::number as location_id,
+        date::date as data_date,
+        load_ts,
+        payload:hourly as hourly,
+        payload:hourly_units as hourly_units
+    
+    from src
+
+)
+
+select * from final
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.stg__weather"} */;
+[0m12:08:17.593679 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.182 seconds
+[0m12:08:17.604100 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025334731BD0>]}
+[0m12:08:17.606088 [info ] [Thread-1 (]: 5 of 13 OK created sql view model CHEDDR_WEDDR.stg__weather .................... [[32mSUCCESS 1[0m in 0.21s]
+[0m12:08:17.610357 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.stg__weather
+[0m12:08:17.611902 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.dim__air_quality_units
+[0m12:08:17.614495 [info ] [Thread-1 (]: 6 of 13 START sql table model CHEDDR_WEDDR.dim__air_quality_units .............. [RUN]
+[0m12:08:17.615565 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.stg__weather, now model.cheddr_weddr.dim__air_quality_units)
+[0m12:08:17.616513 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.dim__air_quality_units
+[0m12:08:17.622735 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.dim__air_quality_units"
+[0m12:08:17.624467 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.dim__air_quality_units
+[0m12:08:17.632011 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__air_quality_units"
+[0m12:08:17.633055 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__air_quality_units: select * from (
+        with
+
+src as (
+
+    select top 1
+        hourly_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__air_quality
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => hourly_units) j
+
+)
+
+select * from flattened
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__air_quality_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__air_quality_units"} */
+[0m12:08:17.779392 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.145 seconds
+[0m12:08:17.787410 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__air_quality_units"
+[0m12:08:17.790142 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__air_quality_units: select * from (
+        select
+    
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as varchar)
+     as units
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__air_quality_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__air_quality_units"} */
+[0m12:08:17.872693 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.080 seconds
+[0m12:08:17.881240 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.dim__air_quality_units"
+[0m12:08:17.886280 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__air_quality_units"
+[0m12:08:17.887792 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__air_quality_units: create or replace transient table ANALYTICS.CHEDDR_WEDDR.dim__air_quality_units
+    
+  (
+    field varchar primary key,
+    units varchar
+    
+    )
+
+    
+    
+    
+    as (
+    select field, units
+    from (
+        with
+
+src as (
+
+    select top 1
+        hourly_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__air_quality
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => hourly_units) j
+
+)
+
+select * from flattened
+    ) as model_subq
+    )
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__air_quality_units"} */;
+[0m12:08:18.391519 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.503 seconds
+[0m12:08:18.401648 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000253357950D0>]}
+[0m12:08:18.402702 [info ] [Thread-1 (]: 6 of 13 OK created sql table model CHEDDR_WEDDR.dim__air_quality_units ......... [[32mSUCCESS 1[0m in 0.79s]
+[0m12:08:18.405506 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.dim__air_quality_units
+[0m12:08:18.407467 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.dim__flood_units
+[0m12:08:18.408460 [info ] [Thread-1 (]: 7 of 13 START sql table model CHEDDR_WEDDR.dim__flood_units .................... [RUN]
+[0m12:08:18.410640 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.dim__air_quality_units, now model.cheddr_weddr.dim__flood_units)
+[0m12:08:18.411693 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.dim__flood_units
+[0m12:08:18.416948 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.dim__flood_units"
+[0m12:08:18.419062 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.dim__flood_units
+[0m12:08:18.425269 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__flood_units"
+[0m12:08:18.426398 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__flood_units: select * from (
+        with
+
+src as (
+
+    select top 1
+        daily_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__flood
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => daily_units) j
+
+)
+
+select * from flattened
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__flood_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__flood_units"} */
+[0m12:08:18.562732 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.135 seconds
+[0m12:08:18.569474 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__flood_units"
+[0m12:08:18.572009 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__flood_units: select * from (
+        select
+    
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as varchar)
+     as units
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__flood_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__flood_units"} */
+[0m12:08:18.647551 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.063 seconds
+[0m12:08:18.652986 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.dim__flood_units"
+[0m12:08:18.657570 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__flood_units"
+[0m12:08:18.659078 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__flood_units: create or replace transient table ANALYTICS.CHEDDR_WEDDR.dim__flood_units
+    
+  (
+    field varchar primary key,
+    units varchar
+    
+    )
+
+    
+    
+    
+    as (
+    select field, units
+    from (
+        with
+
+src as (
+
+    select top 1
+        daily_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__flood
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => daily_units) j
+
+)
+
+select * from flattened
+    ) as model_subq
+    )
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__flood_units"} */;
+[0m12:08:19.017956 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.357 seconds
+[0m12:08:19.022360 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025335794450>]}
+[0m12:08:19.024328 [info ] [Thread-1 (]: 7 of 13 OK created sql table model CHEDDR_WEDDR.dim__flood_units ............... [[32mSUCCESS 1[0m in 0.61s]
+[0m12:08:19.026703 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.dim__flood_units
+[0m12:08:19.028734 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.dim__satellite_radiation_units
+[0m12:08:19.029281 [info ] [Thread-1 (]: 8 of 13 START sql table model CHEDDR_WEDDR.dim__satellite_radiation_units ...... [RUN]
+[0m12:08:19.031298 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.dim__flood_units, now model.cheddr_weddr.dim__satellite_radiation_units)
+[0m12:08:19.031298 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.dim__satellite_radiation_units
+[0m12:08:19.036547 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.dim__satellite_radiation_units"
+[0m12:08:19.037540 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.dim__satellite_radiation_units
+[0m12:08:19.045618 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__satellite_radiation_units"
+[0m12:08:19.045618 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__satellite_radiation_units: select * from (
+        with
+
+src as (
+
+    select top 1
+        hourly_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__satellite_radiation
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => hourly_units) j
+
+)
+
+select * from flattened
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__satellite_radiation_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__satellite_radiation_units"} */
+[0m12:08:19.190258 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.143 seconds
+[0m12:08:19.197885 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__satellite_radiation_units"
+[0m12:08:19.199575 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__satellite_radiation_units: select * from (
+        select
+    
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as varchar)
+     as units
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__satellite_radiation_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__satellite_radiation_units"} */
+[0m12:08:19.278377 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.076 seconds
+[0m12:08:19.284267 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.dim__satellite_radiation_units"
+[0m12:08:19.288433 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__satellite_radiation_units"
+[0m12:08:19.289456 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__satellite_radiation_units: create or replace transient table ANALYTICS.CHEDDR_WEDDR.dim__satellite_radiation_units
+    
+  (
+    field varchar primary key,
+    units varchar
+    
+    )
+
+    
+    
+    
+    as (
+    select field, units
+    from (
+        with
+
+src as (
+
+    select top 1
+        hourly_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__satellite_radiation
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => hourly_units) j
+
+)
+
+select * from flattened
+    ) as model_subq
+    )
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__satellite_radiation_units"} */;
+[0m12:08:19.660126 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.368 seconds
+[0m12:08:19.668673 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025334740890>]}
+[0m12:08:19.671257 [info ] [Thread-1 (]: 8 of 13 OK created sql table model CHEDDR_WEDDR.dim__satellite_radiation_units . [[32mSUCCESS 1[0m in 0.64s]
+[0m12:08:19.674394 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.dim__satellite_radiation_units
+[0m12:08:19.676415 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.dim__weather_units
+[0m12:08:19.677416 [info ] [Thread-1 (]: 9 of 13 START sql table model CHEDDR_WEDDR.dim__weather_units .................. [RUN]
+[0m12:08:19.679378 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.dim__satellite_radiation_units, now model.cheddr_weddr.dim__weather_units)
+[0m12:08:19.681245 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.dim__weather_units
+[0m12:08:19.686153 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.dim__weather_units"
+[0m12:08:19.688711 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.dim__weather_units
+[0m12:08:19.696469 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__weather_units"
+[0m12:08:19.696469 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__weather_units: select * from (
+        with
+
+src as (
+
+    select top 1
+        hourly_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__weather
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => hourly_units) j
+
+)
+
+select * from flattened
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__weather_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__weather_units"} */
+[0m12:08:19.842874 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.144 seconds
+[0m12:08:19.849496 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__weather_units"
+[0m12:08:19.851521 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__weather_units: select * from (
+        select
+    
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as varchar)
+     as units
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__weather_units"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__weather_units"} */
+[0m12:08:19.919282 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.067 seconds
+[0m12:08:19.925722 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.dim__weather_units"
+[0m12:08:19.930909 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.dim__weather_units"
+[0m12:08:19.938652 [debug] [Thread-1 (]: On model.cheddr_weddr.dim__weather_units: create or replace transient table ANALYTICS.CHEDDR_WEDDR.dim__weather_units
+    
+  (
+    field varchar primary key,
+    units varchar
+    
+    )
+
+    
+    
+    
+    as (
+    select field, units
+    from (
+        with
+
+src as (
+
+    select top 1
+        hourly_units
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__weather
+
+),
+
+flattened as (
+
+    select
+        j.key::varchar as field,
+        j.value::varchar as units
+
+    from src,
+        lateral flatten (input => hourly_units) j
+
+)
+
+select * from flattened
+    ) as model_subq
+    )
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.dim__weather_units"} */;
+[0m12:09:21.541660 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 61.601 seconds
+[0m12:09:21.547676 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533409D3D0>]}
+[0m12:09:21.550204 [info ] [Thread-1 (]: 9 of 13 OK created sql table model CHEDDR_WEDDR.dim__weather_units ............. [[32mSUCCESS 1[0m in 61.87s]
+[0m12:09:21.552726 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.dim__weather_units
+[0m12:09:21.555154 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.fct__air_quality
+[0m12:09:21.556579 [info ] [Thread-1 (]: 10 of 13 START sql incremental model CHEDDR_WEDDR.fct__air_quality ............. [RUN]
+[0m12:09:21.559088 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.dim__weather_units, now model.cheddr_weddr.fct__air_quality)
+[0m12:09:21.560630 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.fct__air_quality
+[0m12:09:21.584693 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.fct__air_quality"
+[0m12:09:21.588743 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.fct__air_quality
+[0m12:09:21.659284 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:21.660300 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: select * from (
+        
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        hourly
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__air_quality
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => hourly:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => hourly) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__air_quality)
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:21.817567 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.156 seconds
+[0m12:09:21.827029 [warn ] [Thread-1 (]: Detected columns with numeric type and unspecified precision/scale, this can lead to unintended rounding: ['location_id']`
+[0m12:09:21.833789 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:21.835801 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: select * from (
+        select
+    
+      
+    cast(null as number)
+     as location_id, 
+      
+    cast(null as timestamp_ntz)
+     as ts_time, 
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as float)
+     as value, 
+      
+    cast(null as date)
+     as data_date, 
+      
+    cast(null as timestamp_ntz)
+     as load_ts
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:21.948852 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.109 seconds
+[0m12:09:21.962431 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:21.963433 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: create or replace  temporary view ANALYTICS.CHEDDR_WEDDR.fct__air_quality__dbt_tmp
+  
+  
+  
+  
+  as (
+    
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        hourly
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__air_quality
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => hourly:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => hourly) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__air_quality)
+
+
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */;
+[0m12:09:22.174764 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.210 seconds
+[0m12:09:22.202188 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.204200 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: describe table ANALYTICS.CHEDDR_WEDDR.fct__air_quality__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:22.286177 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.081 seconds
+[0m12:09:22.292844 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.293845 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: describe table ANALYTICS.CHEDDR_WEDDR.fct__air_quality
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:22.361669 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.067 seconds
+[0m12:09:22.385911 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.386916 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: describe table ANALYTICS.CHEDDR_WEDDR.fct__air_quality__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:22.456919 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.068 seconds
+[0m12:09:22.463360 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.464360 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: describe table "ANALYTICS"."CHEDDR_WEDDR"."FCT__AIR_QUALITY"
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:22.580949 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.114 seconds
+[0m12:09:22.610708 [debug] [Thread-1 (]: 
+    In "ANALYTICS"."CHEDDR_WEDDR"."FCT__AIR_QUALITY":
+        Schema changed: False
+        Source columns not in target: []
+        Target columns not in source: []
+        New column types: []
+  
+[0m12:09:22.627003 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.630085 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.630734 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: BEGIN
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:22.729461 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.099 seconds
+[0m12:09:22.732536 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.733547 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: insert into ANALYTICS.CHEDDR_WEDDR.fct__air_quality ("LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS")
+    (
+        select "LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS"
+        from ANALYTICS.CHEDDR_WEDDR.fct__air_quality__dbt_tmp
+    )
+
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */;
+[0m12:09:22.932065 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.195 seconds
+[0m12:09:22.932065 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:22.933102 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: COMMIT
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:23.034627 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.101 seconds
+[0m12:09:23.065107 [debug] [Thread-1 (]: Applying DROP to: ANALYTICS.CHEDDR_WEDDR.fct__air_quality__dbt_tmp
+[0m12:09:23.084713 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__air_quality"
+[0m12:09:23.086236 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__air_quality: drop view if exists ANALYTICS.CHEDDR_WEDDR.fct__air_quality__dbt_tmp cascade
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__air_quality"} */
+[0m12:09:23.202919 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.115 seconds
+[0m12:09:23.208744 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000253346C9E90>]}
+[0m12:09:23.210266 [info ] [Thread-1 (]: 10 of 13 OK created sql incremental model CHEDDR_WEDDR.fct__air_quality ........ [[32mSUCCESS 0[0m in 1.65s]
+[0m12:09:23.212977 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.fct__air_quality
+[0m12:09:23.214998 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.fct__flood
+[0m12:09:23.215997 [info ] [Thread-1 (]: 11 of 13 START sql incremental model CHEDDR_WEDDR.fct__flood ................... [RUN]
+[0m12:09:23.218615 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.fct__air_quality, now model.cheddr_weddr.fct__flood)
+[0m12:09:23.220272 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.fct__flood
+[0m12:09:23.231940 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.fct__flood"
+[0m12:09:23.234527 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.fct__flood
+[0m12:09:23.247087 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:09:23.249143 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: select * from (
+        
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        daily
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__flood
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => daily:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => daily) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__flood)
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:09:23.408643 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.158 seconds
+[0m12:09:23.413527 [warn ] [Thread-1 (]: Detected columns with numeric type and unspecified precision/scale, this can lead to unintended rounding: ['location_id']`
+[0m12:09:23.418603 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:09:23.420970 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: select * from (
+        select
+    
+      
+    cast(null as number)
+     as location_id, 
+      
+    cast(null as timestamp_ntz)
+     as ts_time, 
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as float)
+     as value, 
+      
+    cast(null as date)
+     as data_date, 
+      
+    cast(null as timestamp_ntz)
+     as load_ts
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:10:25.019395 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 61.596 seconds
+[0m12:10:25.040207 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:25.042743 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: create or replace  temporary view ANALYTICS.CHEDDR_WEDDR.fct__flood__dbt_tmp
+  
+  
+  
+  
+  as (
+    
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        daily
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__flood
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => daily:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => daily) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__flood)
+
+
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */;
+[0m12:10:25.297225 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.252 seconds
+[0m12:10:25.308552 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:25.310192 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: describe table ANALYTICS.CHEDDR_WEDDR.fct__flood__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:10:25.402401 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.092 seconds
+[0m12:10:25.411480 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:25.413444 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: describe table ANALYTICS.CHEDDR_WEDDR.fct__flood
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:10:25.508839 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.095 seconds
+[0m12:10:25.522353 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:25.524315 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: describe table ANALYTICS.CHEDDR_WEDDR.fct__flood__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:10:25.606275 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.081 seconds
+[0m12:10:25.618145 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:25.619306 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: describe table "ANALYTICS"."CHEDDR_WEDDR"."FCT__FLOOD"
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:10:25.687034 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.066 seconds
+[0m12:10:25.693174 [debug] [Thread-1 (]: 
+    In "ANALYTICS"."CHEDDR_WEDDR"."FCT__FLOOD":
+        Schema changed: False
+        Source columns not in target: []
+        Target columns not in source: []
+        New column types: []
+  
+[0m12:10:25.739492 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.fct__flood"
+[0m12:10:25.741192 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:25.742751 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: -- back compat for old kwarg name
+  
+  begin
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */;
+[0m12:10:25.835107 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.091 seconds
+[0m12:10:25.836623 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:25.839161 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: merge into ANALYTICS.CHEDDR_WEDDR.fct__flood as DBT_INTERNAL_DEST
+        using ANALYTICS.CHEDDR_WEDDR.fct__flood__dbt_tmp as DBT_INTERNAL_SOURCE
+        on (
+                    DBT_INTERNAL_SOURCE.location_id = DBT_INTERNAL_DEST.location_id
+                ) and (
+                    DBT_INTERNAL_SOURCE.ts_time = DBT_INTERNAL_DEST.ts_time
+                ) and (
+                    DBT_INTERNAL_SOURCE.field = DBT_INTERNAL_DEST.field
+                )
+
+    
+    when matched then update set
+        "LOCATION_ID" = DBT_INTERNAL_SOURCE."LOCATION_ID","TS_TIME" = DBT_INTERNAL_SOURCE."TS_TIME","FIELD" = DBT_INTERNAL_SOURCE."FIELD","VALUE" = DBT_INTERNAL_SOURCE."VALUE","DATA_DATE" = DBT_INTERNAL_SOURCE."DATA_DATE","LOAD_TS" = DBT_INTERNAL_SOURCE."LOAD_TS"
+    
+
+    when not matched then insert
+        ("LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS")
+    values
+        ("LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS")
+
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */;
+[0m12:10:26.459527 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.619 seconds
+[0m12:10:26.462840 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:26.466869 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: COMMIT
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:10:26.779383 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.310 seconds
+[0m12:10:26.788721 [debug] [Thread-1 (]: Applying DROP to: ANALYTICS.CHEDDR_WEDDR.fct__flood__dbt_tmp
+[0m12:10:26.790517 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__flood"
+[0m12:10:26.791576 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__flood: drop view if exists ANALYTICS.CHEDDR_WEDDR.fct__flood__dbt_tmp cascade
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__flood"} */
+[0m12:10:26.912293 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.119 seconds
+[0m12:10:26.922596 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025335871E10>]}
+[0m12:10:26.924576 [info ] [Thread-1 (]: 11 of 13 OK created sql incremental model CHEDDR_WEDDR.fct__flood .............. [[32mSUCCESS 0[0m in 63.70s]
+[0m12:10:26.926674 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.fct__flood
+[0m12:10:26.928672 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.fct__satellite_radiation
+[0m12:10:26.930652 [info ] [Thread-1 (]: 12 of 13 START sql incremental model CHEDDR_WEDDR.fct__satellite_radiation ..... [RUN]
+[0m12:10:26.932283 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.fct__flood, now model.cheddr_weddr.fct__satellite_radiation)
+[0m12:10:26.935007 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.fct__satellite_radiation
+[0m12:10:26.944004 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:10:26.946069 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.fct__satellite_radiation
+[0m12:10:26.954967 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:10:26.954967 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: select * from (
+        
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        hourly
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__satellite_radiation
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => hourly:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => hourly) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation)
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:28.506994 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 61.550 seconds
+[0m12:11:28.517255 [warn ] [Thread-1 (]: Detected columns with numeric type and unspecified precision/scale, this can lead to unintended rounding: ['location_id']`
+[0m12:11:28.524143 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:28.526726 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: select * from (
+        select
+    
+      
+    cast(null as number)
+     as location_id, 
+      
+    cast(null as timestamp_ntz)
+     as ts_time, 
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as float)
+     as value, 
+      
+    cast(null as date)
+     as data_date, 
+      
+    cast(null as timestamp_ntz)
+     as load_ts
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:28.637096 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.108 seconds
+[0m12:11:28.651453 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:28.652457 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: create or replace  temporary view ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation__dbt_tmp
+  
+  
+  
+  
+  as (
+    
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        hourly
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__satellite_radiation
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => hourly:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => hourly) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation)
+
+
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */;
+[0m12:11:28.871185 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.217 seconds
+[0m12:11:28.882506 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:28.884511 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: describe table ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:28.996009 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.110 seconds
+[0m12:11:29.010924 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:29.013232 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: describe table ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:29.084164 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.069 seconds
+[0m12:11:29.093715 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:29.095980 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: describe table ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:29.172672 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.075 seconds
+[0m12:11:29.179459 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:29.181351 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: describe table "ANALYTICS"."CHEDDR_WEDDR"."FCT__SATELLITE_RADIATION"
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:29.249319 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.067 seconds
+[0m12:11:29.253526 [debug] [Thread-1 (]: 
+    In "ANALYTICS"."CHEDDR_WEDDR"."FCT__SATELLITE_RADIATION":
+        Schema changed: False
+        Source columns not in target: []
+        Target columns not in source: []
+        New column types: []
+  
+[0m12:11:29.256623 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:29.260155 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:29.262158 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: BEGIN
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:29.378306 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.116 seconds
+[0m12:11:29.379884 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:29.381366 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: insert into ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation ("LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS")
+    (
+        select "LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS"
+        from ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation__dbt_tmp
+    )
+
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */;
+[0m12:11:29.805552 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.423 seconds
+[0m12:11:29.807118 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:29.808634 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: COMMIT
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:30.012191 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.202 seconds
+[0m12:11:30.023921 [debug] [Thread-1 (]: Applying DROP to: ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation__dbt_tmp
+[0m12:11:30.026428 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__satellite_radiation"
+[0m12:11:30.027951 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__satellite_radiation: drop view if exists ANALYTICS.CHEDDR_WEDDR.fct__satellite_radiation__dbt_tmp cascade
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__satellite_radiation"} */
+[0m12:11:30.130774 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.102 seconds
+[0m12:11:30.136834 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533474D390>]}
+[0m12:11:30.137388 [info ] [Thread-1 (]: 12 of 13 OK created sql incremental model CHEDDR_WEDDR.fct__satellite_radiation  [[32mSUCCESS 0[0m in 63.20s]
+[0m12:11:30.139467 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.fct__satellite_radiation
+[0m12:11:30.140886 [debug] [Thread-1 (]: Began running node model.cheddr_weddr.fct__weather
+[0m12:11:30.141900 [info ] [Thread-1 (]: 13 of 13 START sql incremental model CHEDDR_WEDDR.fct__weather ................. [RUN]
+[0m12:11:30.142966 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.cheddr_weddr.fct__satellite_radiation, now model.cheddr_weddr.fct__weather)
+[0m12:11:30.145472 [debug] [Thread-1 (]: Began compiling node model.cheddr_weddr.fct__weather
+[0m12:11:30.152921 [debug] [Thread-1 (]: Writing injected SQL for node "model.cheddr_weddr.fct__weather"
+[0m12:11:30.154939 [debug] [Thread-1 (]: Began executing node model.cheddr_weddr.fct__weather
+[0m12:11:30.164658 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:11:30.166669 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: select * from (
+        
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        hourly
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__weather
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => hourly:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => hourly) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__weather)
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:11:30.331839 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.164 seconds
+[0m12:11:30.337352 [warn ] [Thread-1 (]: Detected columns with numeric type and unspecified precision/scale, this can lead to unintended rounding: ['location_id']`
+[0m12:11:30.340551 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:11:30.340960 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: select * from (
+        select
+    
+      
+    cast(null as number)
+     as location_id, 
+      
+    cast(null as timestamp_ntz)
+     as ts_time, 
+      
+    cast(null as varchar)
+     as field, 
+      
+    cast(null as float)
+     as value, 
+      
+    cast(null as date)
+     as data_date, 
+      
+    cast(null as timestamp_ntz)
+     as load_ts
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:11:30.452966 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.110 seconds
+[0m12:11:30.459573 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:11:30.462081 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: create or replace  temporary view ANALYTICS.CHEDDR_WEDDR.fct__weather__dbt_tmp
+  
+  
+  
+  
+  as (
+    
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        hourly
+        
+    from ANALYTICS.CHEDDR_WEDDR.stg__weather
+
+),
+
+ts_times_1 as (
+
+    select distinct
+        j.value::datetime as ts_time
+    
+    from src,
+        lateral flatten(input => hourly:time) j
+
+),
+
+ts_times_2 as (
+
+    select 
+        (row_number() over (order by ts_time asc) - 1) as ts_index,
+        ts_time,
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten (input => hourly) j,
+            lateral flatten (input => j.value) k
+    join ts_times_2 as tt
+        on tt.ts_index = k.index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__weather)
+
+
+  )
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */;
+[0m12:12:32.062103 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 61.599 seconds
+[0m12:12:32.080620 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.082725 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: describe table ANALYTICS.CHEDDR_WEDDR.fct__weather__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:12:32.165265 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.081 seconds
+[0m12:12:32.176809 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.177815 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: describe table ANALYTICS.CHEDDR_WEDDR.fct__weather
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:12:32.254506 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.075 seconds
+[0m12:12:32.265768 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.266773 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: describe table ANALYTICS.CHEDDR_WEDDR.fct__weather__dbt_tmp
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:12:32.350443 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.082 seconds
+[0m12:12:32.365817 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.367519 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: describe table "ANALYTICS"."CHEDDR_WEDDR"."FCT__WEATHER"
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:12:32.437164 [debug] [Thread-1 (]: SQL status: SUCCESS 6 in 0.068 seconds
+[0m12:12:32.445000 [debug] [Thread-1 (]: 
+    In "ANALYTICS"."CHEDDR_WEDDR"."FCT__WEATHER":
+        Schema changed: False
+        Source columns not in target: []
+        Target columns not in source: []
+        New column types: []
+  
+[0m12:12:32.447608 [debug] [Thread-1 (]: Writing runtime sql for node "model.cheddr_weddr.fct__weather"
+[0m12:12:32.450836 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.452404 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: BEGIN
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:12:32.580399 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.127 seconds
+[0m12:12:32.583036 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.585886 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: insert into ANALYTICS.CHEDDR_WEDDR.fct__weather ("LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS")
+    (
+        select "LOCATION_ID", "TS_TIME", "FIELD", "VALUE", "DATA_DATE", "LOAD_TS"
+        from ANALYTICS.CHEDDR_WEDDR.fct__weather__dbt_tmp
+    )
+
+
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */;
+[0m12:12:32.792702 [debug] [Thread-1 (]: SQL status: SUCCESS 0 in 0.204 seconds
+[0m12:12:32.795701 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.797688 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: COMMIT
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:12:32.906945 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.108 seconds
+[0m12:12:32.921278 [debug] [Thread-1 (]: Applying DROP to: ANALYTICS.CHEDDR_WEDDR.fct__weather__dbt_tmp
+[0m12:12:32.924212 [debug] [Thread-1 (]: Using snowflake connection "model.cheddr_weddr.fct__weather"
+[0m12:12:32.924212 [debug] [Thread-1 (]: On model.cheddr_weddr.fct__weather: drop view if exists ANALYTICS.CHEDDR_WEDDR.fct__weather__dbt_tmp cascade
+/* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "cheddr_weddr", "target_name": "dev", "node_id": "model.cheddr_weddr.fct__weather"} */
+[0m12:12:33.034559 [debug] [Thread-1 (]: SQL status: SUCCESS 1 in 0.108 seconds
+[0m12:12:33.044494 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd23beb4e-a349-400a-b739-ee8e9d6a5a32', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533581A010>]}
+[0m12:12:33.046425 [info ] [Thread-1 (]: 13 of 13 OK created sql incremental model CHEDDR_WEDDR.fct__weather ............ [[32mSUCCESS 0[0m in 62.90s]
+[0m12:12:33.048600 [debug] [Thread-1 (]: Finished running node model.cheddr_weddr.fct__weather
+[0m12:12:33.052367 [info ] [MainThread]: 
+[0m12:12:33.080245 [info ] [MainThread]: Running dbt Constraints
+[0m12:12:33.142079 [info ] [MainThread]: Finished dbt Constraints
+[0m12:12:33.142079 [debug] [MainThread]: Writing injected SQL for node "operation.dbt_constraints.dbt_constraints-on-run-end-0"
+[0m12:12:33.149457 [info ] [MainThread]: 1 of 1 START hook: dbt_constraints.on-run-end.0 ................................ [RUN]
+[0m12:12:33.150464 [info ] [MainThread]: 1 of 1 OK hook: dbt_constraints.on-run-end.0 ................................... [[32mOK[0m in 0.10s]
+[0m12:12:33.151507 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m12:12:33.151507 [debug] [MainThread]: Connection 'list_ANALYTICS' was left open.
+[0m12:12:33.152588 [debug] [MainThread]: On list_ANALYTICS: Close
+[0m12:12:33.445815 [debug] [MainThread]: Connection 'list_ANALYTICS_CHEDDR_WEDDR' was left open.
+[0m12:12:33.446910 [debug] [MainThread]: On list_ANALYTICS_CHEDDR_WEDDR: Close
+[0m12:12:33.733422 [debug] [MainThread]: Connection 'model.cheddr_weddr.fct__weather' was left open.
+[0m12:12:33.734424 [debug] [MainThread]: On model.cheddr_weddr.fct__weather: Close
+[0m12:12:33.863106 [info ] [MainThread]: 
+[0m12:12:33.865178 [info ] [MainThread]: Finished running 4 incremental models, 1 project hook, 5 table models, 4 view models in 0 hours 4 minutes and 20.80 seconds (260.80s).
+[0m12:12:33.874450 [debug] [MainThread]: Command end result
+[0m12:12:34.039234 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\target\manifest.json
+[0m12:12:34.043109 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\target\semantic_manifest.json
+[0m12:12:34.051404 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\target\run_results.json
+[0m12:12:34.051404 [info ] [MainThread]: 
+[0m12:12:34.052535 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m12:12:34.053538 [info ] [MainThread]: 
+[0m12:12:34.054989 [info ] [MainThread]: Done. PASS=14 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=14
+[0m12:12:34.055988 [debug] [MainThread]: Command `dbt run` succeeded at 12:12:34.055988 after 263.53 seconds
+[0m12:12:34.057154 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025331160210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002533119A110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002532A69EA90>]}
+[0m12:12:34.057154 [debug] [MainThread]: Flushing usage events
+[0m12:12:34.743960 [debug] [MainThread]: An error was encountered while trying to flush usage events
