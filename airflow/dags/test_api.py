@@ -1,4 +1,3 @@
-import os
 import json
 import requests
 from airflow.sdk import dag, task
@@ -47,7 +46,6 @@ def test_api():
         
         loc_ids = [loc['location_id'] for loc in locations]
 
-        # country = location["country"] # TODO: cities in the US CANNOT get satellite radiation data.
         url = request["url"]
         params = request["params"]
         params["latitude"] = [loc['latitude'] for loc in locations]
@@ -70,51 +68,7 @@ def test_api():
             raise
 
         print(content)
-        # return None
-        key = f"raw/{endpoint}/{date}/data.json"
-        data = {
-            "date": date,
-            "endpoint": endpoint,
-            "location_ids": loc_ids,
-            "payload": content
-        }
-        hook = S3Hook(aws_conn_id="aws_default")
-        hook.load_string(
-            string_data=json.dumps(data),
-            key=key,
-            bucket_name=S3_BUCKET,
-            replace=True,
-        )
-        return key
-    
-    @task
-    def truncate_snowflake_target_tables():
-        hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
-        for table_name in ["WEATHER", "AIR_QUALITY", "SATELLITE_RADIATION", "FLOOD"]:
-            truncate_raw_sql = f"truncate table {table_name};"
-            hook.run(truncate_raw_sql)
-        
-    @task
-    def ingest_from_s3_to_snowflake(s3_key):
-        print(s3_key)
-        endpoint = s3_key.split("/")[1]
-        today = s3_key.split("/")[2]
-        table_name = endpoint.upper().replace("-","_")
-        copy_into_raw_sql = f"""
-            copy into {table_name} (payload, location_ids, date, load_ts)
-            from (
-                select 
-                    $1:payload,
-                    $1:location_ids,
-                    $1:date,
-                    current_timestamp()
-                from @my_s3_stage/{endpoint}/{today}
-            )
-            on_error = abort_statement
-            ;
-        """
-        hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
-        hook.run(copy_into_raw_sql)
+        return None
 
     locations = get_locations()
     reqs = get_requests()
@@ -123,11 +77,5 @@ def test_api():
     ).expand(
         request=reqs
     )
-    truncate = truncate_snowflake_target_tables()
-    ingest = ingest_from_s3_to_snowflake.expand(
-        s3_key=keys
-    )
-
-    truncate >> ingest
 
 test_api()

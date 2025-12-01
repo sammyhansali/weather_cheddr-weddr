@@ -1,4 +1,3 @@
-import os
 from datetime import datetime
 from cosmos import ProjectConfig, ProfileConfig, ExecutionConfig, ExecutionMode, DbtDag
 
@@ -37,8 +36,8 @@ def execution_config():
     return _execution_config
 
 
-test_cosmos_dag = DbtDag(
-    dag_id="test_cosmos_dag",
+cosmos_dbt_run = DbtDag(
+    dag_id="cosmos_dbt_run",
     schedule="@daily",
     start_date=datetime(2025,1,1),
     catchup=False,

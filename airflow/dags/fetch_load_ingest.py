@@ -1,4 +1,3 @@
-import os
 import json
 import requests
 from airflow.sdk import dag, task
@@ -11,44 +10,46 @@ S3_BUCKET = "weather-cheddr-weddr"
 
 # DAG logic
 @dag(
-    dag_id = "weather_api_orchestrator",
+    dag_id = "fetch_load_ingest",
     description = "",
     start_date = datetime(2025, 1, 1),
     schedule = timedelta(days=1),
     catchup = False,
 )
-def weather_api_orchestrator():
+def fetch_load_ingest():
 
     @task
     def get_locations():
         fp = "config/locations.json"
         with open(fp, "r") as f:
             locations = json.load(f)
-        return locations[:2] # TODO: remove this so we can process all data at once.
+        return locations
     
     @task
     def get_requests():
         fp = "config/requests.json"
         with open(fp, "r") as f:
             requests = json.load(f)
-        return requests[:2] # TODO: remove this so we can process all data at once.
+        return requests
 
     @task
-    def fetch_response(location, request):
-        print(location)
+    def fetch_and_load_to_s3(locations, request):
+        print(locations)
         print(request)
-
+    
         date = datetime.today().strftime('%Y-%m-%d')
         endpoint = request["endpoint"]
-        location_id = str(location["location_id"])
 
-        country = location["country"] # TODO: cities in the US CANNOT get satellite radiation data.
-        latitude = location["latitude"]
-        longitude = location["longitude"]
+        # 12/01/2025 - OpenMeteo API does not support satellite-radiation endpoint for locations in the USA.
+        if endpoint == "satellite-radiation":
+            locations = [loc for loc in locations if loc['country'] != 'US']
+        
+        loc_ids = [loc['location_id'] for loc in locations]
+
         url = request["url"]
         params = request["params"]
-        params["latitude"] = latitude
-        params["longitude"] = longitude
+        params["latitude"] = [loc['latitude'] for loc in locations]
+        params["longitude"] = [loc['longitude'] for loc in locations]
 
         try:
             resp = requests.get(url=url, params=params)
@@ -57,27 +58,22 @@ def weather_api_orchestrator():
             if resp.status_code != 200: 
                 raise requests.exceptions.HTTPError
             content = json.loads(resp.content)
-            return [date, endpoint, location_id, content]
 
         except requests.exceptions.HTTPError as err:
             print("API request failed. Error details: ", err)
+            raise
 
         except Exception as err:
             print("An error occurred. Error details: ", err)
-    
-    @task
-    def load_response_to_s3(response):
-        date = response[0]
-        endpoint = response[1]
-        location_id = response[2]
-        payload = response[3]
+            raise
 
-        key = f"raw/{endpoint}/{date}/location_id={location_id}/data.json"
+        # print(content)
+        key = f"raw/{endpoint}/{date}/data.json"
         data = {
             "date": date,
             "endpoint": endpoint,
-            "location_id": location_id,
-            "payload": payload
+            "location_ids": loc_ids,
+            "payload": content
         }
         hook = S3Hook(aws_conn_id="aws_default")
         hook.load_string(
@@ -87,7 +83,7 @@ def weather_api_orchestrator():
             replace=True,
         )
         return key
-
+    
     @task
     def truncate_snowflake_target_tables():
         hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
@@ -101,13 +97,12 @@ def weather_api_orchestrator():
         endpoint = s3_key.split("/")[1]
         today = s3_key.split("/")[2]
         table_name = endpoint.upper().replace("-","_")
-        # truncate_raw_sql = f"truncate table {table_name};"
         copy_into_raw_sql = f"""
-            copy into {table_name} (payload, location_id, date, load_ts)
+            copy into {table_name} (payload, location_ids, date, load_ts)
             from (
                 select 
                     $1:payload,
-                    $1:location_id,
+                    $1:location_ids,
                     $1:date,
                     current_timestamp()
                 from @my_s3_stage/{endpoint}/{today}
@@ -118,18 +113,12 @@ def weather_api_orchestrator():
         hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
         hook.run(copy_into_raw_sql)
 
-    # @task()
-    # def dbt_run():
-    #     pass
-
     locations = get_locations()
     reqs = get_requests()
-    responses = fetch_response.expand(
-        request=reqs,
-        location=locations,
-    )
-    keys = load_response_to_s3.expand(
-        response=responses,
+    keys = fetch_and_load_to_s3.partial(
+        locations=locations
+    ).expand(
+        request=reqs
     )
     truncate = truncate_snowflake_target_tables()
     ingest = ingest_from_s3_to_snowflake.expand(
@@ -138,4 +127,4 @@ def weather_api_orchestrator():
 
     truncate >> ingest
 
-weather_api_orchestrator()
+fetch_load_ingest()
