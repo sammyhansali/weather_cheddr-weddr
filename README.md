@@ -32,3 +32,4 @@ PK for fact tables: location_id, ts, field
     - link to my code
     - detailed explanation with great visuals of what i did
 - move compute to a cloud service
+- CI / CD (github actions)

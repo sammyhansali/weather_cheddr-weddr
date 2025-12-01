@@ -11,14 +11,24 @@ src as (
 
 final as (
 
-    select
-        location_id::number as location_id,
-        date::date as data_date,
-        load_ts,
-        payload:hourly as hourly,
-        payload:hourly_units as hourly_units
+    -- select
+    --     location_id::number as location_id,
+    --     date::date as data_date,
+    --     load_ts,
+    --     payload:hourly as hourly,
+    --     payload:hourly_units as hourly_units
     
-    from src
+    -- from src
+
+    select 
+        w.location_ids[f.index]::number as location_id,
+        w.date::date as data_date,
+        w.load_ts,
+        f.value:hourly as hourly,
+        f.value:hourly_units as hourly_units,
+        
+    from src as w,
+        lateral flatten (input => w.payload) as f
 
 )
 
