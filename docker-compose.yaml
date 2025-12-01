@@ -1,7 +1,7 @@
 services:
 
   af:
-    image: apache/airflow:3.1.3
+    build: .
     container_name: airflow_container
     ports:
       - 8000:8080
@@ -10,11 +10,12 @@ services:
       - ./airflow/common:/opt/airflow/common
       - ./airflow/config:/opt/airflow/config
       - ./airflow/airflow.cfg:/opt/airflow/airflow.cfg
+      - ./dbt:/opt/airflow/dags/dbt
     environment:
       PYTHONPATH: "/opt/airflow:/opt/airflow/common"
       AIRFLOW_HOME: "/opt/airflow"
       AIRFLOW__WEBSERVER__AUTHENTICATE: "False"
       AIRFLOW_CONN_AWS_DEFAULT: "aws://${AWS_ACCESS_KEY}:${AWS_SECRET_ACCESS_KEY}@/?region_name=${AWS_DEFAULT_REGION}"
-      AIRFLOW_CONN_SNOWFLAKE_DEFAULT: $AIRFLOW_CONN_SNOWFLAKE_DEFAULT #"snowflake://${SNOWFLAKE_USER}:${SNOWFLAKE_PASSWORD}@${SNOWFLAKE_ACCOUNT}/${SNOWFLAKE_DATABASE}/${SNOWFLAKE_SCHEMA}?warehouse=${SNOWFLAKE_WAREHOUSE}"
+      AIRFLOW_CONN_SNOWFLAKE_DEFAULT: $AIRFLOW_CONN_SNOWFLAKE_DEFAULT
     command: >
       bash -c "airflow db migrate && airflow standalone"
