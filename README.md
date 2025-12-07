@@ -24,8 +24,8 @@ every day at midnight, for location in locations, it will:
 PK for fact tables: location_id, ts, field
 
 # Ideas
-- astronomer cosmos for dbt orchestration from airflow
-- more dbt tests
+- more dbt tests (constraints/schema tests, biz logic tests, unit tests)
+- great expectations tests
 - once metabase good, swap it out for superset
 - create a website for this portfolio project
     - see live bi dashboard
@@ -33,3 +33,6 @@ PK for fact tables: location_id, ts, field
     - detailed explanation with great visuals of what i did
 - move compute to a cloud service
 - CI / CD (github actions)
+- terraform for cloud services
+- look into dlthub for ingestion
+- duckdb!!! its coming up so often now
