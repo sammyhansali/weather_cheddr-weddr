@@ -6,7 +6,21 @@ x-superset-volumes: &superset-volumes
 
 services:
 
-  af:
+  airflow-db:
+    image: postgres:16
+    container_name: airflow_db_container
+    ports:
+      - 5000:5432
+    environment:
+      POSTGRES_DB: airflow_db
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+    volumes:
+      - airflow_db_home:/var/lib/postgresql/data
+    networks:
+      - my_airflow_net
+
+  airflow:
     build: .
     container_name: airflow_container
     ports:
@@ -21,10 +35,16 @@ services:
       PYTHONPATH: "/opt/airflow:/opt/airflow/common"
       AIRFLOW_HOME: "/opt/airflow"
       AIRFLOW__WEBSERVER__AUTHENTICATE: "False"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow_db
       AIRFLOW_CONN_AWS_DEFAULT: "aws://${AWS_ACCESS_KEY}:${AWS_SECRET_ACCESS_KEY}@/?region_name=${AWS_DEFAULT_REGION}"
       AIRFLOW_CONN_SNOWFLAKE_DEFAULT: $AIRFLOW_CONN_SNOWFLAKE_DEFAULT
+    depends_on:
+      airflow-db:
+        condition: service_started
     command: >
       bash -c "airflow db migrate && airflow standalone"
+    networks:
+      - my_airflow_net
 
   redis:
     image: redis:7
@@ -45,9 +65,9 @@ services:
     container_name: superset_db
     restart: unless-stopped
     ports:
-      - 5432:5432
+      - 5001:5432
     volumes:
-      - db_home:/var/lib/postgresql/data #./postgres/data later
+      - superset_db_home:/var/lib/postgresql/data #./postgres/data later
     #   - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     networks:
       - my_superset_net
@@ -97,9 +117,13 @@ services:
 volumes:
   redis:
     external: false
-  db_home:
+  airflow_db_home:
+    external: false
+  superset_db_home:
     external: false
 
 networks:
+  my_airflow_net:
+    driver: bridge
   my_superset_net:
     driver: bridge

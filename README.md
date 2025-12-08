@@ -26,12 +26,12 @@ PK for fact tables: location_id, ts, field
 # Ideas
 - more dbt tests (constraints/schema tests, biz logic tests, unit tests)
 - great expectations tests
-- once metabase good, swap it out for superset
 - create a website for this portfolio project
     - see live bi dashboard
     - link to my code
     - detailed explanation with great visuals of what i did
 - move compute to a cloud service
+- create a deployment environment instead of just a dev environment
 - CI / CD (github actions)
 - terraform for cloud services
 - look into dlthub for ingestion
