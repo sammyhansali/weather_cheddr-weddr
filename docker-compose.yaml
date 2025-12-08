@@ -1,3 +1,9 @@
+x-superset-user: &superset-user root
+x-superset-volumes: &superset-volumes
+  # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
+  - ./superset/docker:/app/docker
+  - ./superset/docker/superset_config.py:/app/pythonpath/superset_config.py
+
 services:
 
   af:
@@ -19,3 +25,81 @@ services:
       AIRFLOW_CONN_SNOWFLAKE_DEFAULT: $AIRFLOW_CONN_SNOWFLAKE_DEFAULT
     command: >
       bash -c "airflow db migrate && airflow standalone"
+
+  redis:
+    image: redis:7
+    container_name: superset_cache
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+    networks:
+      - my_superset_net
+
+  superset-db:
+    env_file:
+      - path: superset/docker/.env # default
+        required: true
+    image: postgres:16
+    container_name: superset_db
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - db_home:/var/lib/postgresql/data #./postgres/data later
+    #   - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - my_superset_net
+
+  superset:
+    env_file:
+      - path: superset/docker/.env # default
+        required: true
+    image: apache/superset:3.0.0-py310
+    container_name: superset_app
+    command: ["/app/docker/docker-bootstrap.sh", "app"]
+    restart: unless-stopped
+    ports:
+      - 8088:8088
+    user: *superset-user
+    depends_on:
+      superset-init:
+        condition: service_completed_successfully
+    volumes: *superset-volumes
+    environment:
+      DATABASE_HOST: superset-db
+    networks:
+      - my_superset_net
+
+  superset-init:
+    image: apache/superset:3.0.0-py310
+    container_name: superset_init
+    command: ["/app/docker/docker-init.sh"]
+    env_file:
+      - path: superset/docker/.env # default
+        required: true
+    depends_on:
+      superset-db:
+        condition: service_started
+      redis:
+        condition: service_started
+    user: *superset-user
+    volumes: *superset-volumes
+    environment:
+      SUPERSET_LOAD_EXAMPLES: no
+      DATABASE_HOST: superset-db
+    healthcheck:
+      disable: true
+    networks:
+      - my_superset_net
+
+volumes:
+  redis:
+    external: false
+  db_home:
+    external: false
+
+networks:
+  my_superset_net:
+    driver: bridge

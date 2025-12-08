@@ -1,0 +1,2 @@
+snowflake-sqlalchemy
+cryptography==39.0.1
