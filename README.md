@@ -36,3 +36,26 @@ PK for fact tables: location_id, ts, field
 - terraform for cloud services
 - look into dlthub for ingestion
 - duckdb!!! its coming up so often now
+
+# Roadmap
+1. robust data quality / validation layer
+    - (a) constraints tests
+    - (b) business logic tests
+    - (c) unit tests
+    - try dbt-expectations
+2. ci/cd
+    - github actions
+        - lint SQL and python and YAML
+        - run dbt parse and dbt compile
+        - build images on main 
+    - pre-commit hooks locally
+3. cloud deployment
+    - docker containers pushed to ECR and ran in ECS
+    - superset in ECS + fargate
+    - airflow can be tried in MWAA
+4. terraform for reproducible cloud
+    - write infra as code for all aws services used
+    - maybe have seperate dev/prod envs
+5. lakehouse/alternatives
+    - try duckdb locally
+    - try apache iceberge on s3
