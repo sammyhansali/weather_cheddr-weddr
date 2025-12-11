@@ -1,9 +1,9 @@
 models:
   - name: dim__weather_units
-    config:
+    config: &dim_common_config
       contract:
         enforced: true
-    columns: 
+    columns: &dim_common_columns
       - name: field
         data_type: varchar
         constraints:
@@ -13,48 +13,19 @@ models:
         data_type: varchar
 
   - name: dim__air_quality_units
-    config:
-      contract:
-        enforced: true
-    columns: 
-      - name: field
-        data_type: varchar
-        constraints:
-          - type: primary_key
-            warn_unenforced: false
-      - name: units
-        data_type: varchar
+    config: *dim_common_config
+    columns: *dim_common_columns
 
   - name: dim__satellite_radiation_units
-    config:
-      contract:
-        enforced: true
-    columns: 
-      - name: field
-        data_type: varchar
-        constraints:
-          - type: primary_key
-            warn_unenforced: false
-      - name: units
-        data_type: varchar
+    config: *dim_common_config
+    columns: *dim_common_columns
 
   - name: dim__flood_units
-    config:
-      contract:
-        enforced: true
-    columns: 
-      - name: field
-        data_type: varchar
-        constraints:
-          - type: primary_key
-            warn_unenforced: false
-      - name: units
-        data_type: varchar
+    config: *dim_common_config
+    columns: *dim_common_columns
 
   - name: dim__locations
-    config:
-      contract:
-        enforced: true
+    config: *dim_common_config
     columns:
       - name: location_id
         data_type: number

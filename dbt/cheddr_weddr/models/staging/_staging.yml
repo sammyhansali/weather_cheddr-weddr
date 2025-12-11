@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg__weather
+    columns: &stg_common_columns
+      - name: location_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('seed__locations')
+                field: location_id
+      - name: data_date
+        data_tests:
+          - not_null
+      - name: load_ts
+        data_tests:
+          - not_null
+      - name: hourly
+      - name: hourly_units
+
+  - name: stg__air_quality
+    columns: *stg_common_columns
+
+  - name: stg__satellite_radiation
+    columns: *stg_common_columns
+
+  - name: stg__flood
+    columns:
+      - name: location_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('seed__locations')
+                field: location_id
+      - name: data_date
+        data_tests:
+          - not_null
+      - name: load_ts
+        data_tests:
+          - not_null
+      - name: daily
+      - name: daily_units

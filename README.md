@@ -39,10 +39,11 @@ PK for fact tables: location_id, ts, field
 
 # Roadmap
 1. robust data quality / validation layer
-    - (a) constraints tests
-    - (b) business logic tests
+    - (a) model contracts (done)
+    - (b) data tests
     - (c) unit tests
-    - try dbt-expectations
+    - try dbt-expectations and dbt-utils for added tests
+    - make sure that cosmos-dbt runs tests before execution of the dag
 2. ci/cd
     - github actions
         - lint SQL and python and YAML
