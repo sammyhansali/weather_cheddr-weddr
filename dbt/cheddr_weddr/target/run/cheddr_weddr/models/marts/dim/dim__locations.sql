@@ -2,7 +2,7 @@
   
     
 
-create or replace transient table ANALYTICS.CHEDDR_WEDDR.dim__locations
+create or replace transient table DEV.CHEDDR_WEDDR.dim__locations
     
   (
     location_id number primary key,
@@ -30,7 +30,7 @@ src as (
         longitude::float as longitude,
         latitude::float as latitude
     
-    from ANALYTICS.CHEDDR_WEDDR.seed__locations
+    from DEV.CHEDDR_WEDDR.seed__locations
 
 )
 

@@ -2,7 +2,7 @@
   
     
 
-create or replace transient table ANALYTICS.CHEDDR_WEDDR.dim__flood_units
+create or replace transient table DEV.CHEDDR_WEDDR.dim__flood_units
     
   (
     field varchar primary key,
@@ -23,7 +23,7 @@ src as (
     select top 1
         daily_units
         
-    from ANALYTICS.CHEDDR_WEDDR.stg__flood
+    from DEV.CHEDDR_WEDDR.stg__flood
 
 ),
 

@@ -1,0 +1,14 @@
+
+    
+    
+    
+    create table DEV.CHEDDR_WEDDR.seed__locations (location_id integer,city text,country text,longitude float8,latitude float8)
+  ;
+    -- dbt seed --
+    
+            insert into DEV.CHEDDR_WEDDR.seed__locations (location_id, city, country, longitude, latitude) values
+            (%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s),(%s,%s,%s,%s,%s)
+        
+
+;
+  

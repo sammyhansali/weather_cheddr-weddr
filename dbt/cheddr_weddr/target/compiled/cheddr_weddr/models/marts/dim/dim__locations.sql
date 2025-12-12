@@ -9,7 +9,7 @@ src as (
         longitude::float as longitude,
         latitude::float as latitude
     
-    from ANALYTICS.CHEDDR_WEDDR.seed__locations
+    from DEV.CHEDDR_WEDDR.seed__locations
 
 )
 

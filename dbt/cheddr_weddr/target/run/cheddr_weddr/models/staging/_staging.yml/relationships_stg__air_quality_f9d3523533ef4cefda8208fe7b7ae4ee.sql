@@ -12,13 +12,13 @@
 
 with child as (
     select location_id as from_field
-    from ANALYTICS.CHEDDR_WEDDR.stg__air_quality
+    from DEV.CHEDDR_WEDDR.stg__air_quality
     where location_id is not null
 ),
 
 parent as (
     select location_id as to_field
-    from ANALYTICS.CHEDDR_WEDDR.seed__locations
+    from DEV.CHEDDR_WEDDR.seed__locations
 )
 
 select

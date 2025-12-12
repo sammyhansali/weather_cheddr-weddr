@@ -5,7 +5,7 @@ src as (
     select top 1
         hourly_units
         
-    from ANALYTICS.CHEDDR_WEDDR.stg__satellite_radiation
+    from DEV.CHEDDR_WEDDR.stg__satellite_radiation
 
 ),
 

@@ -8,8 +8,10 @@ from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 from cosmos import DbtTaskGroup
 
 # Constants
+ENV = "DEV" # either DEV or PROD allowed.
 S3_BUCKET = "weather-cheddr-weddr"
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/cheddr_weddr"
+DBT_PROFILES_PATH = "/opt/airflow/dags/dbt/cheddr_weddr/profiles.yml"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
 def project_config():
@@ -26,13 +28,13 @@ def profile_config():
     from cosmos.profiles import SnowflakeUserPasswordProfileMapping
     
     _profile_config = ProfileConfig(
-        profile_name = "default",
-        target_name = "dev",
+        profile_name = "cheddr_weddr",
+        target_name = ENV,
         profile_mapping = SnowflakeUserPasswordProfileMapping(
             conn_id = "snowflake_default",
             profile_args = {
-                "database": "analytics",
-                "schema": "cheddr_weddr",
+                "database": ENV,
+                "warehouse": "TRANSFORMING",
                 "threads": 8
             },
         ),

@@ -1,5 +1,5 @@
 
-  create or replace   view ANALYTICS.CHEDDR_WEDDR.stg__satellite_radiation
+  create or replace   view DEV.CHEDDR_WEDDR.stg__satellite_radiation
   
   
   

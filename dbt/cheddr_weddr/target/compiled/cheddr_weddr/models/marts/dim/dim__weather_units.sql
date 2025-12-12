@@ -5,7 +5,7 @@ src as (
     select top 1
         hourly_units
         
-    from ANALYTICS.CHEDDR_WEDDR.stg__weather
+    from DEV.CHEDDR_WEDDR.stg__weather
 
 ),
 

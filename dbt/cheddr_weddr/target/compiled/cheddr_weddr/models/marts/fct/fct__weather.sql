@@ -10,7 +10,7 @@ src as (
         load_ts,
         hourly
         
-    from ANALYTICS.CHEDDR_WEDDR.stg__weather
+    from DEV.CHEDDR_WEDDR.stg__weather
 
 ),
 
@@ -54,9 +54,3 @@ flattened as (
 )
 
 select * from flattened
-
-
-  -- this filter will only be applied on an incremental run
-  -- (uses >= to include records arriving later on the same day as the last run of this model)
-  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from ANALYTICS.CHEDDR_WEDDR.fct__weather)
-

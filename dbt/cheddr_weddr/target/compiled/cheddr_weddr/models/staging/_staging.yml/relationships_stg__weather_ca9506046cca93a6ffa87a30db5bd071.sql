@@ -4,13 +4,13 @@
 
 with child as (
     select location_id as from_field
-    from ANALYTICS.CHEDDR_WEDDR.stg__weather
+    from DEV.CHEDDR_WEDDR.stg__weather
     where location_id is not null
 ),
 
 parent as (
     select location_id as to_field
-    from ANALYTICS.CHEDDR_WEDDR.seed__locations
+    from DEV.CHEDDR_WEDDR.seed__locations
 )
 
 select

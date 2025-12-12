@@ -5,7 +5,7 @@ src as (
     select top 1
         daily_units
         
-    from ANALYTICS.CHEDDR_WEDDR.stg__flood
+    from DEV.CHEDDR_WEDDR.stg__flood
 
 ),
 

@@ -1,15 +1,15 @@
 cheddr_weddr:
   target: dev
   outputs:
-  
+
     dev:
       type: snowflake
       account:    "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user:       "{{ env_var('SNOWFLAKE_USER') }}"
       password:   "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role:       "{{ env_var('SNOWFLAKE_ROLE') }}"
+      schema:     "{{ env_var('SNOWFLAKE_SCHEMA') }}"
       warehouse:  "TRANSFORMING"
-      schema:     "ANALYTICS"
       database:   "DEV"
       threads: 4
       client_session_keep_alive: False
@@ -28,12 +28,12 @@ cheddr_weddr:
       user:       "{{ env_var('SNOWFLAKE_USER') }}"
       password:   "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role:       "{{ env_var('SNOWFLAKE_ROLE') }}"
+      schema:     "{{ env_var('SNOWFLAKE_SCHEMA') }}"
       warehouse:  "TRANSFORMING"
-      schema:     "ANALYTICS"
       database:   "PROD"
       threads: 4
       client_session_keep_alive: False
-      query_tag: dbt_dev
+      query_tag: dbt_prod
 
       # optional
       connect_retries: 0 # default 0
