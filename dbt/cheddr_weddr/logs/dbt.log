@@ -42852,3 +42852,82 @@ select * from flattened
 [0m11:45:39.548975 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001614D6A7950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001614D6A7790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001614D6A78D0>]}
 [0m11:45:39.548975 [debug] [MainThread]: Flushing usage events
 [0m11:45:40.539483 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:35:40.207440 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001926B19F590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001926B16E9D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001926B16F310>]}
+
+
+============================== 09:35:40.215709 | 8e0562f5-6b6b-45d6-9535-4b605e8cc106 ==============================
+[0m09:35:40.215709 [info ] [MainThread]: Running with dbt=1.10.15
+[0m09:35:40.216680 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\sammy\\projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr', 'log_format': 'default', 'write_json': 'True', 'use_colors': 'True', 'warn_error': 'None', 'log_path': 'C:\\Users\\sammy\\projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\logs', 'partial_parse': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'invocation_command': 'dbt debug', 'printer_width': '80', 'target_path': 'None'}
+[0m09:35:40.330180 [info ] [MainThread]: dbt version: 1.10.15
+[0m09:35:40.331206 [info ] [MainThread]: python version: 3.11.13
+[0m09:35:40.333226 [info ] [MainThread]: python path: C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Scripts\python.exe
+[0m09:35:40.334221 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m09:35:40.346702 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'SNOWFLAKE_ACCOUNT'
+[0m09:35:40.349035 [debug] [MainThread]: Command `dbt debug` failed at 09:35:40.349035 after 0.28 seconds
+[0m09:35:40.350580 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001926B1D3990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019264369B10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000192643699D0>]}
+[0m09:35:40.350580 [debug] [MainThread]: Flushing usage events
+[0m09:35:41.328546 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:36:01.090058 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000192E878CA50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000192E878F0D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000192E878F7D0>]}
+
+
+============================== 09:36:01.096137 | 9d3b08bb-38da-46dd-8d66-56a40c8092b4 ==============================
+[0m09:36:01.096137 [info ] [MainThread]: Running with dbt=1.10.15
+[0m09:36:01.098201 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'no_print': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'target_path': 'None', 'warn_error': 'None', 'indirect_selection': 'eager', 'partial_parse': 'True', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'C:\\Users\\sammy\\projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr\\logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'version_check': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'profiles_dir': 'C:\\Users\\sammy\\projects\\portfolio\\weather_cheddr-weddr\\dbt\\cheddr_weddr', 'invocation_command': 'dbt debug', 'printer_width': '80', 'write_json': 'True'}
+[0m09:36:01.146022 [info ] [MainThread]: dbt version: 1.10.15
+[0m09:36:01.148570 [info ] [MainThread]: python version: 3.11.13
+[0m09:36:01.151088 [info ] [MainThread]: python path: C:\Users\sammy\Projects\portfolio\weather_cheddr-weddr\.venv\Scripts\python.exe
+[0m09:36:01.152111 [info ] [MainThread]: os info: Windows-10-10.0.26100-SP0
+[0m09:36:03.511931 [info ] [MainThread]: Using profiles dir at C:\Users\sammy\projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr
+[0m09:36:03.512936 [info ] [MainThread]: Using profiles.yml file at C:\Users\sammy\projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\profiles.yml
+[0m09:36:03.514940 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\sammy\projects\portfolio\weather_cheddr-weddr\dbt\cheddr_weddr\dbt_project.yml
+[0m09:36:03.518520 [info ] [MainThread]: adapter type: snowflake
+[0m09:36:03.520277 [info ] [MainThread]: adapter version: 1.10.2
+[0m09:36:03.714576 [info ] [MainThread]: Configuration:
+[0m09:36:03.716591 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m09:36:03.717633 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m09:36:03.719651 [info ] [MainThread]: Required dependencies:
+[0m09:36:03.720652 [debug] [MainThread]: Executing "git --help"
+[0m09:36:03.787769 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m09:36:03.788819 [debug] [MainThread]: STDERR: "b''"
+[0m09:36:03.789835 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m09:36:03.792371 [info ] [MainThread]: Connection:
+[0m09:36:03.794363 [info ] [MainThread]:   account: UWFSIJY-VVC83787
+[0m09:36:03.795378 [info ] [MainThread]:   user: shansali3
+[0m09:36:03.799680 [info ] [MainThread]:   database: DEV
+[0m09:36:03.808692 [info ] [MainThread]:   warehouse: TRANSFORMING
+[0m09:36:03.810716 [info ] [MainThread]:   role: ACCOUNTADMIN
+[0m09:36:03.815278 [info ] [MainThread]:   schema: ANALYTICS
+[0m09:36:03.828453 [info ] [MainThread]:   authenticator: None
+[0m09:36:03.834857 [info ] [MainThread]:   oauth_client_id: None
+[0m09:36:03.845466 [info ] [MainThread]:   query_tag: dbt_dev
+[0m09:36:03.852882 [info ] [MainThread]:   client_session_keep_alive: False
+[0m09:36:03.854297 [info ] [MainThread]:   host: None
+[0m09:36:03.868808 [info ] [MainThread]:   port: None
+[0m09:36:03.901612 [info ] [MainThread]:   proxy_host: None
+[0m09:36:03.929485 [info ] [MainThread]:   proxy_port: None
+[0m09:36:03.953186 [info ] [MainThread]:   protocol: None
+[0m09:36:03.970352 [info ] [MainThread]:   connect_retries: 0
+[0m09:36:04.002988 [info ] [MainThread]:   connect_timeout: 10
+[0m09:36:04.025207 [info ] [MainThread]:   retry_on_database_errors: True
+[0m09:36:04.033885 [info ] [MainThread]:   retry_all: False
+[0m09:36:04.038877 [info ] [MainThread]:   insecure_mode: False
+[0m09:36:04.043058 [info ] [MainThread]:   reuse_connections: True
+[0m09:36:04.055613 [info ] [MainThread]:   s3_stage_vpce_dns_name: None
+[0m09:36:04.063498 [info ] [MainThread]: Registered adapter: snowflake=1.10.2
+[0m09:36:05.316732 [debug] [MainThread]: Acquiring new snowflake connection 'debug'
+[0m09:36:11.954370 [debug] [MainThread]: Using snowflake connection "debug"
+[0m09:36:11.956037 [debug] [MainThread]: On debug: select 1 as id
+[0m09:36:11.957557 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m09:36:15.763526 [debug] [MainThread]: SQL status: SUCCESS 1 in 3.806 seconds
+[0m09:36:15.764892 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m09:36:15.766832 [info ] [MainThread]: [32mAll checks passed![0m
+[0m09:36:15.767843 [debug] [MainThread]: Command `dbt debug` succeeded at 09:36:15.767843 after 14.79 seconds
+[0m09:36:15.769185 [debug] [MainThread]: Connection 'debug' was left open.
+[0m09:36:15.770237 [debug] [MainThread]: On debug: Close
+[0m09:36:16.048878 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000192E86BB050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000192E8787AD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000192E8787910>]}
+[0m09:36:16.049899 [debug] [MainThread]: Flushing usage events
+[0m09:36:16.892483 [debug] [MainThread]: An error was encountered while trying to flush usage events

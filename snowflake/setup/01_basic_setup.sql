@@ -1,66 +1,70 @@
--- Create databases and schemas
+-- create databases and schemas
 create database if not exists RAW;
-create database if not exists ANALYTICS;
+create database if not exists DEV;
+create database if not exists PROD;
 create schema if not exists RAW.CHEDDR_WEDDR;
-create schema if not exists ANALYTICS.CHEDDR_WEDDR;
+create schema if not exists DEV.CHEDDR_WEDDR;
+create schema if not exists PROD.CHEDDR_WEDDR;
 
--- Create warehouses
-create warehouse if not exists LOADING warehouse_size = 'XSMALL';
-create warehouse if not exists TRANSFORMING warehouse_size = 'XSMALL';
-create warehouse if not exists REPORTING warehouse_size = 'XSMALL'; 
+-- create warehouses
+create warehouse if not exists loading
+  warehouse_size = 'xsmall';
+create warehouse if not exists transforming
+  warehouse_size = 'xsmall';
+create warehouse if not exists reporting
+  warehouse_size = 'xsmall'; 
 
--- Create roles
-create role if not exists LOADER;
-create role if not exists TRANSFORMER;
-create role if not exists REPORTER;
+-- create roles
+create role if not exists loader;
+create role if not exists transformer;
+create role if not exists reporter;
 
--- Role permissions
--- Warehouses
-GRANT USAGE ON WAREHOUSE LOADING      TO ROLE LOADER;
-GRANT USAGE ON WAREHOUSE TRANSFORMING TO ROLE TRANSFORMER;
-GRANT USAGE ON WAREHOUSE REPORTING    TO ROLE REPORTER;
+-- role permissions
+-- warehouses
+grant usage on warehouse loading      to role loader;
+grant usage on warehouse transforming to role transformer;
+grant usage on warehouse reporting    to role reporter;
 
--- Databases
-GRANT USAGE ON DATABASE RAW        TO ROLE LOADER;
-GRANT USAGE ON DATABASE RAW        TO ROLE TRANSFORMER;
+-- databases
+grant usage on database RAW to role loader;
+grant usage on database DEV to role transformer;
+grant usage on database PROD to role transformer;
+grant usage on database PROD to role reporter;
 
-GRANT USAGE ON DATABASE ANALYTICS  TO ROLE TRANSFORMER;
-GRANT USAGE ON DATABASE ANALYTICS  TO ROLE REPORTER;
+grant role loader to user shansali3;
+grant role transformer to user shansali3;
+grant role reporter to user shansali3;
 
--- RAW: loader builds/owns; transformer only reads
-GRANT USAGE ON ALL SCHEMAS    IN DATABASE RAW TO ROLE LOADER;
-GRANT USAGE ON FUTURE SCHEMAS IN DATABASE RAW TO ROLE LOADER;
-GRANT CREATE SCHEMA ON DATABASE RAW TO ROLE LOADER;  -- if your loaders create connector-specific schemas
+-- -- RAW: loader builds/owns; transformer only reads
+-- grant usage on all schemas    in database RAW to role loader;
+-- grant usage on future schemas in database RAW to role loader;
+-- grant create schema on database RAW to role loader;  -- if your loaders create connector-specific schemas
 
-GRANT CREATE TABLE, CREATE VIEW, CREATE STAGE, CREATE FILE FORMAT
-  ON ALL SCHEMAS    IN DATABASE RAW TO ROLE LOADER;
-GRANT CREATE TABLE, CREATE VIEW, CREATE STAGE, CREATE FILE FORMAT
-  ON FUTURE SCHEMAS IN DATABASE RAW TO ROLE LOADER;
+-- grant create table, create view, create stage, create file format
+--   on all schemas    in database RAW to role loader;
+-- grant create table, create view, create stage, create file format
+--   on future schemas in database RAW to role loader;
 
-GRANT USAGE ON ALL SCHEMAS    IN DATABASE RAW TO ROLE TRANSFORMER;
-GRANT USAGE ON FUTURE SCHEMAS IN DATABASE RAW TO ROLE TRANSFORMER;
-GRANT SELECT ON ALL TABLES     IN DATABASE RAW TO ROLE TRANSFORMER;
-GRANT SELECT ON FUTURE TABLES  IN DATABASE RAW TO ROLE TRANSFORMER;
-GRANT SELECT ON ALL VIEWS      IN DATABASE RAW TO ROLE TRANSFORMER;
-GRANT SELECT ON FUTURE VIEWS   IN DATABASE RAW TO ROLE TRANSFORMER;
+-- grant usage on all schemas    in database DEV to role transformer;
+-- grant usage on future schemas in database DEV to role transformer;
+-- grant select on all tables     in database DEV to role transformer;
+-- grant select on future tables  in database DEV to role transformer;
+-- grant select on all views      in database DEV to role transformer;
+-- grant select on future views   in database DEV to role transformer;
 
--- ANALYTICS: transformer builds/owns; reporter only reads
-GRANT USAGE ON ALL SCHEMAS    IN DATABASE ANALYTICS TO ROLE TRANSFORMER;
-GRANT USAGE ON FUTURE SCHEMAS IN DATABASE ANALYTICS TO ROLE TRANSFORMER;
-GRANT CREATE SCHEMA ON DATABASE ANALYTICS TO ROLE TRANSFORMER;
+-- -- PROD: transformer builds/owns; reporter only reads
+-- grant usage on all schemas    in database PROD to role transformer;
+-- grant usage on future schemas in database PROD to role transformer;
+-- grant create schema on database PROD to role transformer;
 
-GRANT CREATE TABLE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE STAGE
-  ON ALL SCHEMAS    IN DATABASE ANALYTICS TO ROLE TRANSFORMER;
-GRANT CREATE TABLE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE STAGE
-  ON FUTURE SCHEMAS IN DATABASE ANALYTICS TO ROLE TRANSFORMER;
+-- grant create table, create view, create materialized view, create stage
+--   on all schemas    in database PROD to role transformer;
+-- grant create table, create view, create materialized view, create stage
+--   on future schemas in database PROD to role transformer;
 
-GRANT USAGE ON ALL SCHEMAS    IN DATABASE ANALYTICS TO ROLE REPORTER;
-GRANT USAGE ON FUTURE SCHEMAS IN DATABASE ANALYTICS TO ROLE REPORTER;
-GRANT SELECT ON ALL TABLES     IN DATABASE ANALYTICS TO ROLE REPORTER;
-GRANT SELECT ON FUTURE TABLES  IN DATABASE ANALYTICS TO ROLE REPORTER;
-GRANT SELECT ON ALL VIEWS      IN DATABASE ANALYTICS TO ROLE REPORTER;
-GRANT SELECT ON FUTURE VIEWS   IN DATABASE ANALYTICS TO ROLE REPORTER;
-
-grant role loader to user shansali2;
-grant role transformer to user shansali2;
-grant role reporter to user shansali2;
+-- grant usage on all schemas    in database PROD to role reporter;
+-- grant usage on future schemas in database PROD to role reporter;
+-- grant select on all tables     in database PROD to role reporter;
+-- grant select on future tables  in database PROD to role reporter;
+-- grant select on all views      in database PROD to role reporter;
+-- grant select on future views   in database PROD to role reporter;

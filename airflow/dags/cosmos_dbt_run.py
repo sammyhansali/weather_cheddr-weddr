@@ -1,10 +1,12 @@
 from datetime import datetime
-from cosmos import ProjectConfig, ProfileConfig, ExecutionConfig, ExecutionMode, DbtDag
+from cosmos import DbtDag
 
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/cheddr_weddr"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
 def project_config():
+    from cosmos import ProjectConfig
+
     _project_config = ProjectConfig(
         dbt_project_path=DBT_PROJECT_PATH,
         project_name="cheddr_weddr",
@@ -12,6 +14,7 @@ def project_config():
     return _project_config
 
 def profile_config():
+    from cosmos import ProfileConfig
     from cosmos.profiles import SnowflakeUserPasswordProfileMapping
     
     _profile_config = ProfileConfig(
@@ -29,6 +32,8 @@ def profile_config():
     return _profile_config
 
 def execution_config():
+    from cosmos import ExecutionConfig, ExecutionMode
+
     _execution_config = ExecutionConfig(
         execution_mode=ExecutionMode.WATCHER,
         dbt_executable_path=DBT_EXECUTABLE_PATH

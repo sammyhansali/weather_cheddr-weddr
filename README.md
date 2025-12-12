@@ -36,6 +36,7 @@ PK for fact tables: location_id, ts, field
 - terraform for cloud services
 - look into dlthub for ingestion
 - duckdb!!! its coming up so often now
+- ml model deplyments!
 
 # Roadmap
 1. robust data quality / validation layer
@@ -61,3 +62,4 @@ PK for fact tables: location_id, ts, field
 5. lakehouse/alternatives
     - try duckdb locally
     - try apache iceberge on s3
+6. ml model deployments
