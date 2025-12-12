@@ -43,7 +43,8 @@ PK for fact tables: location_id, ts, field
     - (b) data tests
     - (c) unit tests
     - try dbt-expectations and dbt-utils for added tests
-    - make sure that cosmos-dbt runs tests before execution of the dag
+    - make sure that cosmos-dbt runs dbt build instead of dbt run
+    - dev / prod split
 2. ci/cd
     - github actions
         - lint SQL and python and YAML

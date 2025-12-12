@@ -1,22 +1,62 @@
 import json
 import requests
+from datetime import datetime
 from airflow.sdk import dag, task
 from datetime import datetime, timedelta
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
+from cosmos import DbtTaskGroup
 
 # Constants
 S3_BUCKET = "weather-cheddr-weddr"
+DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/cheddr_weddr"
+DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
+
+def project_config():
+    from cosmos import ProjectConfig
+    
+    _project_config = ProjectConfig(
+        dbt_project_path=DBT_PROJECT_PATH,
+        project_name="cheddr_weddr",
+    )
+    return _project_config
+
+def profile_config():
+    from cosmos import ProfileConfig
+    from cosmos.profiles import SnowflakeUserPasswordProfileMapping
+    
+    _profile_config = ProfileConfig(
+        profile_name = "default",
+        target_name = "dev",
+        profile_mapping = SnowflakeUserPasswordProfileMapping(
+            conn_id = "snowflake_default",
+            profile_args = {
+                "database": "analytics",
+                "schema": "cheddr_weddr",
+                "threads": 8
+            },
+        ),
+    )
+    return _profile_config
+
+def execution_config():
+    from cosmos import ExecutionConfig, ExecutionMode
+
+    _execution_config = ExecutionConfig(
+        execution_mode=ExecutionMode.WATCHER,
+        dbt_executable_path=DBT_EXECUTABLE_PATH
+    )
+    return _execution_config
 
 # DAG logic
 @dag(
-    dag_id = "fetch_load_ingest",
+    dag_id = "fetch_load_ingest_build",
     description = "",
     start_date = datetime(2025, 1, 1),
     schedule = timedelta(days=1),
     catchup = False,
 )
-def fetch_load_ingest():
+def fetch_load_ingest_build():
 
     @task
     def get_locations():
@@ -113,6 +153,13 @@ def fetch_load_ingest():
         hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
         hook.run(copy_into_raw_sql)
 
+    dbt_build = DbtTaskGroup(
+        group_id="dbt_build",
+        project_config=project_config(),
+        profile_config=profile_config(),
+        execution_config=execution_config(),
+    )
+
     locations = get_locations()
     reqs = get_requests()
     keys = fetch_and_load_to_s3.partial(
@@ -125,6 +172,6 @@ def fetch_load_ingest():
         s3_key=keys
     )
 
-    truncate >> ingest
+    truncate >> ingest >> dbt_build
 
-fetch_load_ingest()
+fetch_load_ingest_build()
