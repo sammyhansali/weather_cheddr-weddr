@@ -1,11 +1,11 @@
 import json
-import requests
 from datetime import datetime, timedelta
 
-from airflow.sdk import dag, task
+import requests
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
+from airflow.sdk import dag, task
 from cosmos import DbtTaskGroup
 
 # Constants
@@ -63,14 +63,14 @@ def fetch_load_ingest_build():
     @task
     def get_locations():
         fp = "config/locations.json"
-        with open(fp, "r") as f:
+        with open(fp) as f:
             locations = json.load(f)
         return locations
 
     @task
     def get_requests():
         fp = "config/requests.json"
-        with open(fp, "r") as f:
+        with open(fp) as f:
             requests = json.load(f)
         return requests
 
@@ -96,7 +96,6 @@ def fetch_load_ingest_build():
         try:
             resp = requests.get(url=url, params=params)
 
-            resp.raise_for_status
             if resp.status_code != 200:
                 raise requests.exceptions.HTTPError
             content = json.loads(resp.content)

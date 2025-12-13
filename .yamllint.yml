@@ -1,8 +1,28 @@
 extends: default
 
+ignore: |
+  dbt/
+  dbt/cheddr_weddr/target/
+  dbt/cheddr_weddr/dbt_packages/
+  dbt/cheddr_weddr/dbt_internal_packages/
+  **/.venv/
+  **/venv/
+  **/node_modules/
+
 rules:
   line-length:
     max: 120
     level: warning
+
+  # Prevent accidental "yes/no/on/off" being interpreted as booleans
   truthy:
-    allowed-values: ["true", "false", "on", "off", "yes", "no"]
+    allowed-values: ["true", "false", "yes", "no", "on", "off"]
+    check-keys: false
+
+  # Keeps it consistent without being too strict
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
+
+  comments:
+    min-spaces-from-content: 1

@@ -1,14 +1,16 @@
-from datetime import datetime, timedelta
-from airflow.sdk import dag, task, ObjectStoragePath
+from datetime import datetime
+
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.sdk import dag, task
 
 S3_BUCKET = "weather-cheddr-weddr"
 
+
 @dag(
-    dag_id = "test_s3hook",
-    description = "",
-    start_date = datetime(2025, 1, 1),
-    catchup = False,
+    dag_id="test_s3hook",
+    description="",
+    start_date=datetime(2025, 1, 1),
+    catchup=False,
 )
 def test_s3hook():
     @task()
@@ -21,5 +23,6 @@ def test_s3hook():
         )
 
     t1()
+
 
 test_s3hook()
