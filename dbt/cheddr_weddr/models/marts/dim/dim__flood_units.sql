@@ -2,10 +2,9 @@ with
 
 src as (
 
-    select top 1
-        daily_units
-        
-    from {{ ref("stg__flood")}}
+    select top 1 daily_units
+
+    from {{ ref("stg__flood") }}
 
 ),
 
@@ -16,7 +15,7 @@ flattened as (
         j.value::varchar as units
 
     from src,
-        lateral flatten (input => daily_units) j
+        lateral flatten(input => daily_units) as j
 
 )
 

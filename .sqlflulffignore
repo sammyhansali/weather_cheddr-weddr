@@ -2,5 +2,7 @@ target/
 # dbt <1.0.0
 dbt_modules/
 # dbt >=1.0.0
+dbt_internal_packages/
 dbt_packages/
 macros/
+logs/

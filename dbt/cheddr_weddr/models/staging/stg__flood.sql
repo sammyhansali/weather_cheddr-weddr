@@ -2,24 +2,23 @@ with
 
 src as (
 
-    select
-        *
+    select *
 
-    from {{ source('cheddr_weddr', 'flood')}}
+    from {{ source('cheddr_weddr', 'flood') }}
 
 ),
 
 final as (
 
-    select 
+    select
         w.location_ids[f.index]::number as location_id,
         w.date::date as data_date,
         w.load_ts,
         f.value:daily as daily,
-        f.value:daily_units as daily_units,
-        
+        f.value:daily_units as daily_units
+
     from src as w,
-        lateral flatten (input => w.payload) as f
+        lateral flatten(input => w.payload) as f
 
 )
 

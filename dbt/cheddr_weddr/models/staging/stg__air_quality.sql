@@ -2,25 +2,24 @@ with
 
 src as (
 
-    select
-        *
+    select *
 
-    from {{ source('cheddr_weddr', 'air_quality')}}
+    from {{ source('cheddr_weddr', 'air_quality') }}
 
 ),
 
 final as (
 
-    select 
+    select
         w.location_ids[f.index]::number as location_id,
         w.date::date as data_date,
         w.load_ts,
         f.value:hourly as hourly,
-        f.value:hourly_units as hourly_units,
-        
+        f.value:hourly_units as hourly_units
+
     from src as w,
-        lateral flatten (input => w.payload) as f
-        
+        lateral flatten(input => w.payload) as f
+
 )
 
 select * from final
