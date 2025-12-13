@@ -3,12 +3,15 @@ import requests
 from datetime import datetime
 from airflow.sdk import dag, task
 from datetime import datetime, timedelta
+
+from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 from cosmos import DbtTaskGroup
 
 # Constants
-ENV = "DEV" # either DEV or PROD allowed.
+# ENV: either DEV or PROD allowed. set in admin > variables
+ENV = Variable.get("env", default_var="DEV")
 S3_BUCKET = "weather-cheddr-weddr"
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/cheddr_weddr"
 DBT_PROFILES_PATH = "/opt/airflow/dags/dbt/cheddr_weddr/profiles.yml"

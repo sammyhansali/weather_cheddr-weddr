@@ -39,7 +39,7 @@ PK for fact tables: location_id, ts, field
 - ml model deplyments!
 
 # Roadmap
-1. robust data quality / validation layer
+1. robust data quality / validation layer (DONE)
     - (a) model contracts (done)
     - (b) data tests
     - (c) unit tests
