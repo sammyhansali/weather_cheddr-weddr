@@ -1,9 +1,8 @@
 import json
 import requests
-from datetime import datetime
-from airflow.sdk import dag, task
 from datetime import datetime, timedelta
 
+from airflow.sdk import dag, task
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
@@ -17,59 +16,57 @@ DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/cheddr_weddr"
 DBT_PROFILES_PATH = "/opt/airflow/dags/dbt/cheddr_weddr/profiles.yml"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
+
 def project_config():
     from cosmos import ProjectConfig
-    
+
     _project_config = ProjectConfig(
         dbt_project_path=DBT_PROJECT_PATH,
         project_name="cheddr_weddr",
     )
     return _project_config
 
+
 def profile_config():
     from cosmos import ProfileConfig
     from cosmos.profiles import SnowflakeUserPasswordProfileMapping
-    
+
     _profile_config = ProfileConfig(
-        profile_name = "cheddr_weddr",
-        target_name = ENV,
-        profile_mapping = SnowflakeUserPasswordProfileMapping(
-            conn_id = "snowflake_default",
-            profile_args = {
-                "database": ENV,
-                "warehouse": "TRANSFORMING",
-                "threads": 8
-            },
+        profile_name="cheddr_weddr",
+        target_name=ENV,
+        profile_mapping=SnowflakeUserPasswordProfileMapping(
+            conn_id="snowflake_default",
+            profile_args={"database": ENV, "warehouse": "TRANSFORMING", "threads": 8},
         ),
     )
     return _profile_config
+
 
 def execution_config():
     from cosmos import ExecutionConfig, ExecutionMode
 
     _execution_config = ExecutionConfig(
-        execution_mode=ExecutionMode.WATCHER,
-        dbt_executable_path=DBT_EXECUTABLE_PATH
+        execution_mode=ExecutionMode.WATCHER, dbt_executable_path=DBT_EXECUTABLE_PATH
     )
     return _execution_config
 
+
 # DAG logic
 @dag(
-    dag_id = "fetch_load_ingest_build",
-    description = "",
-    start_date = datetime(2025, 1, 1),
-    schedule = timedelta(days=1),
-    catchup = False,
+    dag_id="fetch_load_ingest_build",
+    description="",
+    start_date=datetime(2025, 1, 1),
+    schedule=timedelta(days=1),
+    catchup=False,
 )
 def fetch_load_ingest_build():
-
     @task
     def get_locations():
         fp = "config/locations.json"
         with open(fp, "r") as f:
             locations = json.load(f)
         return locations
-    
+
     @task
     def get_requests():
         fp = "config/requests.json"
@@ -81,26 +78,26 @@ def fetch_load_ingest_build():
     def fetch_and_load_to_s3(locations, request):
         print(locations)
         print(request)
-    
-        date = datetime.today().strftime('%Y-%m-%d')
+
+        date = datetime.today().strftime("%Y-%m-%d")
         endpoint = request["endpoint"]
 
         # 12/01/2025 - OpenMeteo API does not support satellite-radiation endpoint for locations in the USA.
         if endpoint == "satellite-radiation":
-            locations = [loc for loc in locations if loc['country'] != 'US']
-        
-        loc_ids = [loc['location_id'] for loc in locations]
+            locations = [loc for loc in locations if loc["country"] != "US"]
+
+        loc_ids = [loc["location_id"] for loc in locations]
 
         url = request["url"]
         params = request["params"]
-        params["latitude"] = [loc['latitude'] for loc in locations]
-        params["longitude"] = [loc['longitude'] for loc in locations]
+        params["latitude"] = [loc["latitude"] for loc in locations]
+        params["longitude"] = [loc["longitude"] for loc in locations]
 
         try:
             resp = requests.get(url=url, params=params)
 
             resp.raise_for_status
-            if resp.status_code != 200: 
+            if resp.status_code != 200:
                 raise requests.exceptions.HTTPError
             content = json.loads(resp.content)
 
@@ -118,7 +115,7 @@ def fetch_load_ingest_build():
             "date": date,
             "endpoint": endpoint,
             "location_ids": loc_ids,
-            "payload": content
+            "payload": content,
         }
         hook = S3Hook(aws_conn_id="aws_default")
         hook.load_string(
@@ -128,20 +125,20 @@ def fetch_load_ingest_build():
             replace=True,
         )
         return key
-    
+
     @task
     def truncate_snowflake_target_tables():
-        hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
+        hook = SnowflakeHook(snowflake_conn_id="snowflake_default")
         for table_name in ["WEATHER", "AIR_QUALITY", "SATELLITE_RADIATION", "FLOOD"]:
             truncate_raw_sql = f"truncate table {table_name};"
             hook.run(truncate_raw_sql)
-        
+
     @task
     def ingest_from_s3_to_snowflake(s3_key):
         print(s3_key)
         endpoint = s3_key.split("/")[1]
         today = s3_key.split("/")[2]
-        table_name = endpoint.upper().replace("-","_")
+        table_name = endpoint.upper().replace("-", "_")
         copy_into_raw_sql = f"""
             copy into {table_name} (payload, location_ids, date, load_ts)
             from (
@@ -155,7 +152,7 @@ def fetch_load_ingest_build():
             on_error = abort_statement
             ;
         """
-        hook = SnowflakeHook(snowflake_conn_id = "snowflake_default")
+        hook = SnowflakeHook(snowflake_conn_id="snowflake_default")
         hook.run(copy_into_raw_sql)
 
     dbt_build = DbtTaskGroup(
@@ -167,16 +164,11 @@ def fetch_load_ingest_build():
 
     locations = get_locations()
     reqs = get_requests()
-    keys = fetch_and_load_to_s3.partial(
-        locations=locations
-    ).expand(
-        request=reqs
-    )
+    keys = fetch_and_load_to_s3.partial(locations=locations).expand(request=reqs)
     truncate = truncate_snowflake_target_tables()
-    ingest = ingest_from_s3_to_snowflake.expand(
-        s3_key=keys
-    )
+    ingest = ingest_from_s3_to_snowflake.expand(s3_key=keys)
 
     truncate >> ingest >> dbt_build
+
 
 fetch_load_ingest_build()

@@ -1,0 +1,12 @@
+[sqlfluff]
+dialect = snowflake
+templater = dbt
+max_line_length = 120
+
+[sqlfluff:templater:dbt]
+project_dir = dbt/cheddr_weddr
+profiles_dir = dbt/cheddr_weddr
+
+# Ignore dbt build artifacts
+[sqlfluff:core]
+exclude_rules = LT02
