@@ -1,0 +1,61 @@
+
+
+with
+
+src as (
+
+    select
+        location_id,
+        data_date,
+        load_ts,
+        hourly
+
+    from DEV.CHEDDR_WEDDR.stg__satellite_radiation
+
+),
+
+ts_times_1 as (
+
+    select distinct j.value::datetime as ts_time
+
+    from src,
+        lateral flatten(input => hourly:time) as j
+
+),
+
+ts_times_2 as (
+
+    select
+        ts_time,
+        (row_number() over (order by ts_time asc) - 1) as ts_index
+
+    from ts_times_1
+
+),
+
+flattened as (
+
+    select
+        f.location_id,
+        tt.ts_time,
+        j.key::varchar as field,
+        k.value::float as value,
+        f.data_date,
+        f.load_ts
+
+    from src as f,
+        lateral flatten(input => hourly) as j,
+            lateral flatten(input => j.value) as k
+    inner join ts_times_2 as tt
+        on k.index = tt.ts_index
+    where field <> 'time'
+
+)
+
+select * from flattened
+
+
+  -- this filter will only be applied on an incremental run
+  -- (uses >= to include records arriving later on the same day as the last run of this model)
+  where data_date >= (select coalesce(max(ts_time), '1900-01-01') from DEV.CHEDDR_WEDDR.fct__satellite_radiation)
+
