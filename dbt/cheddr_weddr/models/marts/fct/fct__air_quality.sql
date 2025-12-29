@@ -14,7 +14,9 @@ src as (
     select
         location_id,
         data_date,
-        load_ts
+        load_ts,
+        hourly
+
     from {{ ref("stg__air_quality") }}
 
 ),

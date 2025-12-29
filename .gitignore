@@ -13,4 +13,4 @@ wheels/
 .env
 
 # Other
-test_data/
+./dbt/cheddr_weddr/target

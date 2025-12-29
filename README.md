@@ -63,3 +63,8 @@ PK for fact tables: location_id, ts, field
     - try duckdb locally
     - try apache iceberge on s3
 6. ml model deployments
+
+
+
+
+uv run --env-file ../../.env dbt run
