@@ -13,6 +13,7 @@ wheels/
 .env
 
 # Other
-./dbt/cheddr_weddr/target/
-./dbt/cheddr_weddr/dbt_packages/
-./dbt/cheddr_weddr/logs/
+dbt/cheddr_weddr/target/
+dbt/cheddr_weddr/dbt_packages/
+dbt/cheddr_weddr/dbt_internal_packages/
+dbt/cheddr_weddr/logs/
