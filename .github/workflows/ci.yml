@@ -18,13 +18,10 @@ jobs:
       
       - name: Install the latest version of uv and set the Python version
         uses: astral-sh/setup-uv@v7
-        with:
-          python-version: "3.11"
-          enable-cache: true # Enable caching for speed
           
       - name: Install dependencies
         run: |
-          uv sync --frozen
+          uv sync --locked --all-extras --dev
         
       - name: dbt commands (deps + parse + compile)
         working-directory: dbt/cheddr_weddr
