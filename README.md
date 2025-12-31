@@ -67,4 +67,4 @@ PK for fact tables: location_id, ts, field
 
 
 
-uv run --env-file ../../.env dbt run
+uv run --env-file ../../.env dbt run 
