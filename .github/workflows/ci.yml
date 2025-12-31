@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  dbt-and-tests:
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+      SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+      DBT_TARGET: "dev"
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install the latest version of uv and set the Python version
+        uses: astral-sh/setup-uv@v7
+          
+      - name: Install dependencies
+        run: |
+          uv sync --locked --dev
+        
+      - name: dbt commands (deps + parse + compile)
+        working-directory: dbt/cheddr_weddr
+        run: |
+          uv run dbt deps
+          uv run dbt parse --target $DBT_TARGET
+          uv run dbt compile --target $DBT_TARGET
