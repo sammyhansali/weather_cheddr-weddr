@@ -22,11 +22,6 @@ jobs:
       - name: Install dependencies
         run: |
           uv sync --locked --dev
-
-      - name: Verify dbt + snowflake adapter
-        run: |
-          uv run python -c "import dbt.adapters.snowflake; print('snowflake adapter OK')"
-          uv run dbt --version
         
       - name: dbt commands (deps + parse + compile)
         working-directory: dbt/cheddr_weddr
