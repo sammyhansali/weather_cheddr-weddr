@@ -21,7 +21,7 @@ services:
       - my_airflow_net
 
   airflow:
-    build: .
+    build: airflow 
     container_name: airflow_container
     ports:
       - 8000:8080
