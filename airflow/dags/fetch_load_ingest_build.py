@@ -62,14 +62,14 @@ def execution_config():
 def fetch_load_ingest_build():
     @task
     def get_locations():
-        fp = "config/locations.json"
+        fp = "json/locations.json"
         with open(fp) as f:
             locations = json.load(f)
         return locations
 
     @task
     def get_requests():
-        fp = "config/requests.json"
+        fp = "json/requests.json"
         with open(fp) as f:
             requests = json.load(f)
         return requests
