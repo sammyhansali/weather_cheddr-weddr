@@ -1,8 +1,11 @@
 from datetime import datetime
 
+from airflow.models import Variable
 from cosmos import DbtDag
 
+ENV = Variable.get("env", default_var="DEV")
 DBT_PROJECT_PATH = "/opt/airflow/dags/dbt/cheddr_weddr"
+DBT_PROFILES_PATH = "/opt/airflow/dags/dbt/cheddr_weddr/profiles.yml"
 DBT_EXECUTABLE_PATH = "/opt/airflow/dbt_venv/bin/dbt"
 
 
@@ -21,15 +24,11 @@ def profile_config():
     from cosmos.profiles import SnowflakeUserPasswordProfileMapping
 
     _profile_config = ProfileConfig(
-        profile_name="default",
-        target_name="dev",
+        profile_name="cheddr_weddr",
+        target_name=ENV,
         profile_mapping=SnowflakeUserPasswordProfileMapping(
             conn_id="snowflake_default",
-            profile_args={
-                "database": "analytics",
-                "schema": "cheddr_weddr",
-                "threads": 8,
-            },
+            profile_args={"database": ENV, "warehouse": "TRANSFORMING", "threads": 8},
         ),
     )
     return _profile_config
@@ -49,7 +48,7 @@ cosmos_dbt_run = DbtDag(
     schedule="@daily",
     start_date=datetime(2025, 1, 1),
     catchup=False,
-    max_active_tasks=1,
+    # max_active_tasks=1,
     project_config=project_config(),
     profile_config=profile_config(),
     execution_config=execution_config(),
