@@ -20,7 +20,9 @@ x-airflow-common:
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow_db
     AIRFLOW_CONN_AWS_DEFAULT: "aws://${AWS_ACCESS_KEY}:${AWS_SECRET_ACCESS_KEY}@/?region_name=${AWS_DEFAULT_REGION}"
     AIRFLOW_CONN_SNOWFLAKE_DEFAULT: $AIRFLOW_CONN_SNOWFLAKE_DEFAULT
+    AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
   depends_on:
+    &airflow-common-depends-on
     airflow-db:
       condition: service_started
 
@@ -36,9 +38,42 @@ services:
     volumes:
       - airflow_db_home:/var/lib/postgresql/data
 
+  airflow-apiserver:
+    <<: *airflow-common
+    container_name: airflow_apiserver
+    command: api-server
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    ports:
+      - 8080:8080
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: airflow_scheduler
+    command: scheduler
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-dag-processor:
+    <<: *airflow-common
+    container_name: airflow_dag_processor
+    command: dag-processor
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    
+  airflow-init:
+    <<: *airflow-common
+    container_name: airflow_init
+    command: db migrate
+
   airflow-standalone:
     <<: *airflow-common
-    build: airflow 
     container_name: airflow_standalone
     profiles:
       - standalone
