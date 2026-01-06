@@ -13,6 +13,7 @@ x-airflow-common:
     - ./airflow/json:/opt/airflow/json
     - ./dbt:/opt/airflow/dags/dbt
   environment:
+    &airflow-common-env
     PYTHONPATH: "/opt/airflow:/opt/airflow/common"
     AIRFLOW_HOME: "/opt/airflow"
     AIRFLOW_CONFIG: "/opt/airflow/config/airflow.cfg"
@@ -75,6 +76,9 @@ services:
   airflow-standalone:
     <<: *airflow-common
     container_name: airflow_standalone
+    environment:
+      <<: *airflow-common-env
+      AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://localhost:8080/execution/'
     profiles:
       - standalone
     ports:
