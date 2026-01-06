@@ -3,12 +3,32 @@ x-superset-volumes: &superset-volumes
   # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
   - ./superset/docker:/app/docker
   - ./superset/docker/superset_config.py:/app/pythonpath/superset_config.py
+x-airflow-common:
+  &airflow-common
+  build: airflow
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/common:/opt/airflow/common
+    - ./airflow/config:/opt/airflow/config
+    - ./airflow/json:/opt/airflow/json
+    - ./dbt:/opt/airflow/dags/dbt
+  environment:
+    PYTHONPATH: "/opt/airflow:/opt/airflow/common"
+    AIRFLOW_HOME: "/opt/airflow"
+    AIRFLOW_CONFIG: "/opt/airflow/config/airflow.cfg"
+    AIRFLOW__WEBSERVER__AUTHENTICATE: "False"
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow_db
+    AIRFLOW_CONN_AWS_DEFAULT: "aws://${AWS_ACCESS_KEY}:${AWS_SECRET_ACCESS_KEY}@/?region_name=${AWS_DEFAULT_REGION}"
+    AIRFLOW_CONN_SNOWFLAKE_DEFAULT: $AIRFLOW_CONN_SNOWFLAKE_DEFAULT
+  depends_on:
+    airflow-db:
+      condition: service_started
 
 services:
 
   airflow-db:
     image: postgres:16
-    container_name: airflow_db_container
+    container_name: airflow_db
     environment:
       POSTGRES_DB: airflow_db
       POSTGRES_USER: airflow
@@ -16,98 +36,84 @@ services:
     volumes:
       - airflow_db_home:/var/lib/postgresql/data
 
-  airflow:
+  airflow-standalone:
+    <<: *airflow-common
     build: airflow 
-    container_name: airflow_container
+    container_name: airflow_standalone
+    profiles:
+      - standalone
     ports:
       - 8080:8080
-    volumes:
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/common:/opt/airflow/common
-      - ./airflow/config:/opt/airflow/config
-      - ./airflow/json:/opt/airflow/json
-      - ./dbt:/opt/airflow/dags/dbt
-    environment:
-      PYTHONPATH: "/opt/airflow:/opt/airflow/common"
-      AIRFLOW_HOME: "/opt/airflow"
-      AIRFLOW_CONFIG: "/opt/airflow/config/airflow.cfg"
-      AIRFLOW__WEBSERVER__AUTHENTICATE: "False"
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow_db
-      AIRFLOW_CONN_AWS_DEFAULT: "aws://${AWS_ACCESS_KEY}:${AWS_SECRET_ACCESS_KEY}@/?region_name=${AWS_DEFAULT_REGION}"
-      AIRFLOW_CONN_SNOWFLAKE_DEFAULT: $AIRFLOW_CONN_SNOWFLAKE_DEFAULT
-    depends_on:
-      airflow-db:
-        condition: service_started
     command: >
       bash -c "airflow db migrate && airflow standalone"
 
-  redis:
-    image: redis:7
-    container_name: superset_cache
-    restart: unless-stopped
-    ports:
-      - 6379:6379
-    volumes:
-      - redis:/data
-    networks:
-      - my_superset_net
+  # redis:
+  #   image: redis:7
+  #   container_name: superset_cache
+  #   restart: unless-stopped
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - redis:/data
+  #   networks:
+  #     - my_superset_net
 
-  superset-db:
-    env_file:
-      - path: superset/docker/.env # default
-        required: true
-    image: postgres:16
-    container_name: superset_db
-    restart: unless-stopped
-    ports:
-      - 5001:5432
-    volumes:
-      - superset_db_home:/var/lib/postgresql/data #./postgres/data later
-    #   - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-    networks:
-      - my_superset_net
+  # superset-db:
+  #   env_file:
+  #     - path: superset/docker/.env # default
+  #       required: true
+  #   image: postgres:16
+  #   container_name: superset_db
+  #   restart: unless-stopped
+  #   ports:
+  #     - 5001:5432
+  #   volumes:
+  #     - superset_db_home:/var/lib/postgresql/data #./postgres/data later
+  #   #   - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  #   networks:
+  #     - my_superset_net
 
-  superset:
-    env_file:
-      - path: superset/docker/.env # default
-        required: true
-    image: apache/superset:3.0.0-py310
-    container_name: superset_app
-    command: ["/app/docker/docker-bootstrap.sh", "app"]
-    restart: unless-stopped
-    ports:
-      - 8088:8088
-    user: *superset-user
-    depends_on:
-      superset-init:
-        condition: service_completed_successfully
-    volumes: *superset-volumes
-    environment:
-      DATABASE_HOST: superset-db
-    networks:
-      - my_superset_net
+  # superset:
+  #   env_file:
+  #     - path: superset/docker/.env # default
+  #       required: true
+  #   image: apache/superset:3.0.0-py310
+  #   container_name: superset_app
+  #   command: ["/app/docker/docker-bootstrap.sh", "app"]
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8088:8088
+  #   user: *superset-user
+  #   depends_on:
+  #     superset-init:
+  #       condition: service_completed_successfully
+  #   volumes: *superset-volumes
+  #   environment:
+  #     DATABASE_HOST: superset-db
+  #   networks:
+  #     - my_superset_net
 
-  superset-init:
-    image: apache/superset:3.0.0-py310
-    container_name: superset_init
-    command: ["/app/docker/docker-init.sh"]
-    env_file:
-      - path: superset/docker/.env # default
-        required: true
-    depends_on:
-      superset-db:
-        condition: service_started
-      redis:
-        condition: service_started
-    user: *superset-user
-    volumes: *superset-volumes
-    environment:
-      SUPERSET_LOAD_EXAMPLES: no
-      DATABASE_HOST: superset-db
-    healthcheck:
-      disable: true
-    networks:
-      - my_superset_net
+  # superset-init:
+  #   image: apache/superset:3.0.0-py310
+  #   container_name: superset_init
+  #   command: ["/app/docker/docker-init.sh"]
+  #   env_file:
+  #     - path: superset/docker/.env # default
+  #       required: true
+  #   depends_on:
+  #     superset-db:
+  #       condition: service_started
+  #     redis:
+  #       condition: service_started
+  #   user: *superset-user
+  #   volumes: *superset-volumes
+  #   environment:
+  #     SUPERSET_LOAD_EXAMPLES: no
+  #     DATABASE_HOST: superset-db
+  #   healthcheck:
+  #     disable: true
+  #   networks:
+  #     - my_superset_net
 
 volumes:
   airflow_db_home:
