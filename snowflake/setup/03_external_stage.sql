@@ -8,8 +8,8 @@ create or replace storage integration s3_int
 
 desc integration s3_int;
 
--- storage_aws_iam_user_arn = 'arn:aws:iam::846206542736:user/3b2d1000-s'
--- storage_aws_external_id = 'SXC94440_SFCRole=4_5O2Qagj6XUKIl8/abR699NRWRDg='
+-- storage_aws_iam_user_arn = 'arn:aws:iam::953751537377:user/01ve1000-s'
+-- storage_aws_external_id = 'RWC99468_SFCRole=2_qR5sl1LQQo/iQqSBY0wryIGAlS8='
 
 use database RAW;
 use schema CHEDDR_WEDDR;
