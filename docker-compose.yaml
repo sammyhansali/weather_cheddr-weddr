@@ -5,13 +5,14 @@ x-superset-volumes: &superset-volumes
   - ./superset/docker/superset_config.py:/app/pythonpath/superset_config.py
 x-airflow-common:
   &airflow-common
-  build: airflow
-  volumes:
-    - ./airflow/dags:/opt/airflow/dags
-    - ./airflow/common:/opt/airflow/common
-    - ./airflow/config:/opt/airflow/config
-    - ./airflow/json:/opt/airflow/json
-    - ./dbt:/opt/airflow/dags/dbt
+  # build: airflow
+  image: 345204681263.dkr.ecr.us-east-1.amazonaws.com/cheddr-weddr-airflow:latest
+  # volumes:
+  #   - ./airflow/dags:/opt/airflow/dags
+  #   - ./airflow/common:/opt/airflow/common
+  #   - ./airflow/config:/opt/airflow/config
+  #   - ./airflow/json:/opt/airflow/json
+  #   - ./dbt:/opt/airflow/dags/dbt
   environment:
     &airflow-common-env
     PYTHONPATH: "/opt/airflow:/opt/airflow/common"
